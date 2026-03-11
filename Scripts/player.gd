@@ -24,6 +24,9 @@ var collision_shape : CollisionShape2D
 @export_group("Sprites")
 @export var CHARACTER_ANIMATED_SPRITE : AnimatedSprite2D
 
+var coyot_box_pos : Vector2
+var floor_wall_censor_pos : Vector2
+
 enum { # Available states for the Player for readability. Index used by the possibla_states dict to reference paths
 	IDLE, # 0
 	WALK, # 1
@@ -34,6 +37,9 @@ enum { # Available states for the Player for readability. Index used by the poss
 
 func _ready() -> void:
 	setup_states()
+	coyot_box_pos = COYOTE_BOX.position
+	floor_wall_censor_pos = FLOOR_WALL_CENSOR.position
+
 # The conditions for Players to use states
 func _physics_process(_delta: float) -> void:
 	current_state = state_machine.current_state
@@ -53,9 +59,10 @@ func _handle_player_input() -> void:
 		COYOTE_BOX.disabled = true
 
 func _update_box_dir() -> void:
-	COYOTE_BOX.scale.x = direction
-	FLOOR_WALL_CENSOR.scale.x = direction
-	FLOOR_WALL_CENSOR.position.x = 32 * direction
+	#COYOTE_BOX.scale.x = direction
+	#FLOOR_WALL_CENSOR.scale.x = direction
+	COYOTE_BOX.position.x = coyot_box_pos.x * direction
+	FLOOR_WALL_CENSOR.position.x = floor_wall_censor_pos.x * direction
 
 func _match_states() -> void:
 	match possible_states.find_key(current_state):

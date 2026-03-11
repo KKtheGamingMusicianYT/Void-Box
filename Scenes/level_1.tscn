@@ -5,12 +5,26 @@
 [ext_resource type="PackedScene" uid="uid://b38x0l1gd3w7w" path="res://Scenes/Player.tscn" id="3_6444e"]
 [ext_resource type="Script" uid="uid://c52xh8xbqn2i1" path="res://Scripts/player_cam.gd" id="4_evi0p"]
 [ext_resource type="PackedScene" uid="uid://coefif7s7p7tm" path="res://Scenes/box_interface.tscn" id="5_6444e"]
+[ext_resource type="Material" uid="uid://3otlrtqob3g" path="res://Scripts/ResourceScripts/Resources/ObjectColors/hot_pink.tres" id="6_6r07y"]
 [ext_resource type="PackedScene" uid="uid://bx7japdg7ed76" path="res://Scenes/item.tscn" id="6_evi0p"]
+[ext_resource type="Material" uid="uid://dy384xgghatsr" path="res://Scripts/ResourceScripts/Resources/ObjectColors/royal_blue.tres" id="6_xrdnt"]
 [ext_resource type="Texture2D" uid="uid://clg8samn7gqkr" path="res://Assets/Sprites/Block/Size0000.png" id="7_xrdnt"]
 [ext_resource type="Resource" uid="uid://co4dn2fqmywbl" path="res://Scripts/ResourceScripts/Resources/block1.tres" id="8_wrinw"]
+[ext_resource type="Script" uid="uid://l47uf8luj8s6" path="res://Scripts/node_with_id.gd" id="10_af3po"]
+[ext_resource type="Texture2D" uid="uid://bn6l2vtf6ruv0" path="res://Assets/Sprites/Block/Size0001.png" id="10_chwpn"]
+[ext_resource type="Texture2D" uid="uid://bx1hsboq4euo8" path="res://Assets/Sprites/Block/Size0002.png" id="13_6ioyp"]
 
-[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_8ffim"]
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_uy8f0"]
 normal = Vector2(-1, 0)
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_af3po"]
+normal = Vector2(1, 0)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_af3po"]
+size = Vector2(512, 128)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_oovug"]
+size = Vector2(64, 64)
 
 [node name="Level1" type="Node2D" unique_id=685188657]
 
@@ -20,11 +34,13 @@ script = ExtResource("1_vk57k")
 camera = NodePath("../Player/PlayerCamera")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="RBoarder" unique_id=2063946315]
-shape = SubResource("WorldBoundaryShape2D_8ffim")
+shape = SubResource("WorldBoundaryShape2D_uy8f0")
 
-[node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=1574234901]
-tile_map_data = PackedByteArray("AAAAAA8AAAAAAAAAAAAAABAAAAAAAAEAAAABAA8AAAABAAAAAAABABAAAAABAAEAAAACAA8AAAAAAAAAAAACABAAAAAAAAEAAAADAA8AAAABAAAAAAADABAAAAABAAEAAAAEAA8AAAAAAAAAAAAEABAAAAAAAAEAAAAFAA8AAAABAAAAAAAFABAAAAABAAEAAAAGAA8AAAAAAAAAAAAGABAAAAAAAAEAAAAHAA8AAAABAAAAAAAHABAAAAABAAEAAAAIAA8AAAAAAAAAAAAIABAAAAAAAAEAAAAJAA8AAAABAAAAAAAJABAAAAABAAEAAAAKAA8AAAAAAAAAAAAKABAAAAAAAAEAAAALAA8AAAABAAAAAAALABAAAAABAAEAAAAMAA8AAAAAAAAAAAAMABAAAAAAAAEAAAANAA8AAAABAAAAAAANABAAAAABAAEAAAAOAA8AAAAAAAAAAAAOABAAAAAAAAEAAAAPAA8AAAABAAAAAAAPABAAAAABAAEAAAAQAA8AAAAAAAAAAAAQABAAAAAAAAEAAAARAA8AAAABAAAAAAARABAAAAABAAEAAAASAA8AAAAAAAAAAAASABAAAAAAAAEAAAATAA8AAAABAAAAAAATABAAAAABAAEAAAAUAA8AAAAAAAAAAAAUABAAAAAAAAEAAAAVAA8AAAABAAAAAAAVABAAAAABAAEAAAAWAA8AAAAAAAAAAAAWABAAAAAAAAEAAAAXAA8AAAABAAAAAAAXABAAAAABAAEAAAAYAA8AAAAAAAAAAAAYABAAAAAAAAEAAAAZAA8AAAABAAAAAAAZABAAAAABAAEAAAAaAA8AAAAAAAAAAAAaABAAAAAAAAEAAAAbAA8AAAABAAAAAAAbABAAAAABAAEAAAAcAA8AAAAAAAAAAAAcABAAAAAAAAEAAAAdAA8AAAABAAAAAAAdABAAAAABAAEAAAA=")
-tile_set = ExtResource("2_7p6j4")
+[node name="RBoarder2" type="StaticBody2D" parent="." unique_id=770176361]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RBoarder2" unique_id=57644360]
+position = Vector2(32, 0)
+shape = SubResource("WorldBoundaryShape2D_af3po")
 
 [node name="Player" parent="." unique_id=404843843 instance=ExtResource("3_6444e")]
 position = Vector2(184, 928)
@@ -40,9 +56,69 @@ metadata/_custom_type_script = "uid://c52xh8xbqn2i1"
 
 [node name="BoxInterface" parent="." unique_id=2091224111 instance=ExtResource("5_6444e")]
 
-[node name="Item" parent="BoxInterface/PanelContainer/VBoxContainer/PanelContainer/InsideBox" parent_id_path=PackedInt32Array(2091224111, 527385168) index="0" unique_id=540643436 instance=ExtResource("6_evi0p")]
+[node name="Item" parent="BoxInterface/PanelContainer/VBoxContainer/PanelContainer/InsideBox" parent_id_path=PackedInt32Array(2091224111, 527385168) index="0" unique_id=540643436 node_paths=PackedStringArray("object") instance=ExtResource("6_evi0p")]
+material = ExtResource("6_6r07y")
 layout_mode = 2
 icon = ExtResource("7_xrdnt")
 item = ExtResource("8_wrinw")
+id = 1
+object = NodePath("../../../../../../RigidBody2D")
+
+[node name="Item2" parent="BoxInterface/PanelContainer/VBoxContainer/PanelContainer/InsideBox" parent_id_path=PackedInt32Array(2091224111, 527385168) index="1" unique_id=1828514067 instance=ExtResource("6_evi0p")]
+layout_mode = 2
+
+[node name="Item1" parent="BoxInterface/PanelContainer/VBoxContainer/OutsideBox" parent_id_path=PackedInt32Array(2091224111, 1854341907) index="0" unique_id=1726545559 node_paths=PackedStringArray("object")]
+material = ExtResource("6_xrdnt")
+icon = ExtResource("7_xrdnt")
+item = ExtResource("8_wrinw")
+id = 2
+object = NodePath("../../../../../StaticBody2D")
+
+[node name="Item2" parent="BoxInterface/PanelContainer/VBoxContainer/OutsideBox" parent_id_path=PackedInt32Array(2091224111, 1854341907) index="1" unique_id=1842494652 node_paths=PackedStringArray("object")]
+material = ExtResource("6_6r07y")
+icon = ExtResource("7_xrdnt")
+item = ExtResource("8_wrinw")
+id = 3
+object = NodePath("../../../../../RigidBody2D")
+
+[node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=1963785752]
+position = Vector2(0, -64)
+tile_map_data = PackedByteArray("AAAAAAgAAQAAAAAAAQABAAgAAQAAAAAAAQACAAgAAQAAAAAAAQACAAkAAQAAAAAAAQADAAkAAQAAAAAAAQAEAAkAAQAAAAAAAQAFAAkAAQAAAAAAAQAGAAgAAQAAAAAAAQAHAAgAAQAAAAAAAQAIAAgAAQAAAAAAAQAFAAgAAQAAAAAAAQAEAAgAAQAAAAAAAQADAAgAAQAAAAAAAQABAAkAAQAAAAAAAQAAAAkAAQAAAAAAAQAGAAkAAQAAAAAAAQAHAAkAAQAAAAAAAQAIAAkAAQAAAAAAAQAJAAkAAQAAAAAAAQAKAAkAAQAAAAAAAQALAAkAAQAAAAAAAQAMAAkAAQAAAAAAAQANAAkAAQAAAAAAAQAOAAkAAQAAAAAAAQAPAAkAAQAAAAAAAQAPAAgAAQAAAAAAAQAOAAgAAQAAAAAAAQANAAgAAQAAAAAAAQAMAAgAAQAAAAAAAQALAAgAAQAAAAAAAQAKAAgAAQAAAAAAAQAJAAgAAQAAAAAAAQA=")
+tile_set = ExtResource("2_7p6j4")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=102639431 node_paths=PackedStringArray("box", "collision_2d", "sprite_2d")]
+position = Vector2(1184, 736)
+script = ExtResource("10_af3po")
+id = 2
+box = NodePath("../BoxInterface/PanelContainer/VBoxContainer/PanelContainer/InsideBox")
+collision_2d = NodePath("CollisionShape2D")
+sprite_2d = NodePath("Sprite2D")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" unique_id=72827519]
+position = Vector2(-160, 64)
+shape = SubResource("RectangleShape2D_af3po")
+
+[node name="Sprite2D" type="Sprite2D" parent="StaticBody2D" unique_id=1153995513]
+material = ExtResource("6_xrdnt")
+position = Vector2(-160.00003, 32.000015)
+scale = Vector2(1.3333334, 0.5)
+texture = ExtResource("10_chwpn")
+
+[node name="RigidBody2D" type="RigidBody2D" parent="." unique_id=1556049865 node_paths=PackedStringArray("box", "collision_2d", "sprite_2d")]
+position = Vector2(1280, 704)
+script = ExtResource("10_af3po")
+id = 3
+box = NodePath("../BoxInterface/PanelContainer/VBoxContainer/PanelContainer/InsideBox")
+collision_2d = NodePath("CollisionShape2D")
+sprite_2d = NodePath("Sprite2D")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D" unique_id=940290411]
+shape = SubResource("RectangleShape2D_oovug")
+
+[node name="Sprite2D" type="Sprite2D" parent="RigidBody2D" unique_id=1678216343]
+material = ExtResource("6_6r07y")
+position = Vector2(-16, -16)
+scale = Vector2(0.24999996, 0.25000006)
+texture = ExtResource("13_6ioyp")
 
 [editable path="BoxInterface"]

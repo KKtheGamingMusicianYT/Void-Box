@@ -115,6 +115,7 @@ size = Vector2(80, 8)
 size = Vector2(10, 10)
 
 [node name="Player" type="CharacterBody2D" unique_id=404843843 node_paths=PackedStringArray("BUFFER_JUMP_TIMER", "SMALL_PHYSICS_BOX", "COYOTE_BOX", "GAP_CENSOR", "FLOOR_WALL_CENSOR", "GAP_BOX", "CLIP_LEFT", "CLIP_RIGHT", "CEILING_SENSOR", "CHARACTER_ANIMATED_SPRITE", "state_machine")]
+z_index = 100
 script = ExtResource("1_v0iea")
 BUFFER_JUMP_TIMER = NodePath("BufferJumpTimer")
 SMALL_PHYSICS_BOX = NodePath("SmallPhysicsHitBox")
@@ -146,8 +147,8 @@ position = Vector2(0, 4)
 shape = SubResource("RectangleShape2D_megsn")
 
 [node name="CoyoteBox" type="CollisionPolygon2D" parent="." unique_id=780247785]
-position = Vector2(0, -32)
-polygon = PackedVector2Array(-64, 64, -0.5, 64, -0.5, 48, -64, 48)
+position = Vector2(-32, -8)
+polygon = PackedVector2Array(-32, 40, 32, 40, 32, 24, -32, 24)
 disabled = true
 one_way_collision = true
 
