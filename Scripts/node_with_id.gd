@@ -10,6 +10,10 @@ func _process(_delta: float) -> void:
 	if box.child_ids.find(id) != -1:
 		collision_2d.disabled = true
 		sprite_2d.visible = false
+		if "freeze" in self:
+			self.freeze = true
 	else:
 		collision_2d.disabled = false
 		sprite_2d.visible = true
+		if "freeze" in self:
+			self.freeze = false

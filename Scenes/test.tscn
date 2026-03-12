@@ -1,53 +1,48 @@
 [gd_scene format=4 uid="uid://ck48bmp531u0h"]
 
-[ext_resource type="Script" uid="uid://2bnf5vqwki2g" path="res://Scripts/follow_cam.gd" id="1_qpfo2"]
+[ext_resource type="PackedScene" uid="uid://b55edq5uh3pp3" path="res://Scenes/borders.tscn" id="1_mie3u"]
 [ext_resource type="TileSet" uid="uid://dpqhevuc17ijh" path="res://Scripts/ResourceScripts/Resources/test_tileset.tres" id="2_aees8"]
+[ext_resource type="PackedScene" uid="uid://ig4368f766is" path="res://Scenes/level_1.tscn" id="4_mie3u"]
 [ext_resource type="Texture2D" uid="uid://clg8samn7gqkr" path="res://Assets/Sprites/Block/Size0000.png" id="5_0qy5o"]
 [ext_resource type="PackedScene" uid="uid://bx7japdg7ed76" path="res://Scenes/item.tscn" id="5_2cgwh"]
-[ext_resource type="Resource" uid="uid://co4dn2fqmywbl" path="res://Scripts/ResourceScripts/Resources/block1.tres" id="6_yb21e"]
+[ext_resource type="Material" uid="uid://bkxbwyecreq0c" path="res://Scripts/ResourceScripts/Resources/ObjectColors/violet.tres" id="5_mie3u"]
 [ext_resource type="Material" uid="uid://bkj7mm6lfu5ys" path="res://Scripts/ResourceScripts/Resources/ObjectColors/dark_teal.tres" id="8_0qy5o"]
 [ext_resource type="Script" uid="uid://l47uf8luj8s6" path="res://Scripts/node_with_id.gd" id="8_2cgwh"]
 [ext_resource type="PackedScene" uid="uid://dhyync7cvqavl" path="res://Scenes/goal.tscn" id="9_2cgwh"]
-[ext_resource type="PackedScene" uid="uid://6oispmhnqw68" path="res://Scenes/level_1.tscn" id="10_iaow0"]
 [ext_resource type="PackedScene" uid="uid://coefif7s7p7tm" path="res://Scenes/box_interface.tscn" id="10_qpfo2"]
 [ext_resource type="Texture2D" uid="uid://bn6l2vtf6ruv0" path="res://Assets/Sprites/Block/Size0001.png" id="12_aees8"]
 [ext_resource type="PackedScene" uid="uid://b38x0l1gd3w7w" path="res://Scenes/Player.tscn" id="13_aees8"]
-[ext_resource type="Script" uid="uid://c52xh8xbqn2i1" path="res://Scripts/player_cam.gd" id="14_mie3u"]
 [ext_resource type="Material" uid="uid://dgtliho6ft8kk" path="res://Scripts/ResourceScripts/Resources/ObjectColors/lime.tres" id="15_0qy5o"]
 [ext_resource type="Material" uid="uid://nswvvuj2hj3f" path="res://Scripts/ResourceScripts/Resources/ObjectColors/blue.tres" id="15_7nf3m"]
 
-[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_qpfo2"]
-normal = Vector2(-1, 0)
-
-[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_iaow0"]
-normal = Vector2(1, 0)
-
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_iaow0"]
-size = Vector2(128, 384)
+size = Vector2(128, 192)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_yb21e"]
 size = Vector2(128, 64)
 
 [node name="Test" type="Node2D" unique_id=1551045587]
 
-[node name="RBoarder" type="StaticBody2D" parent="." unique_id=573937424 node_paths=PackedStringArray("camera")]
-position = Vector2(1440, 640)
-script = ExtResource("1_qpfo2")
-camera = NodePath("../Player/PlayerCamera")
+[node name="Borders" parent="." unique_id=999858988 instance=ExtResource("1_mie3u")]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="RBoarder" unique_id=364188461]
-shape = SubResource("WorldBoundaryShape2D_qpfo2")
+[node name="RBoarder" parent="Borders" index="0" unique_id=932751578 node_paths=PackedStringArray("camera")]
+camera = NodePath("../../Player/PlayerCamera")
 
-[node name="LBoarder" type="StaticBody2D" parent="." unique_id=221322920]
-position = Vector2(16, 640)
+[node name="Player" parent="." unique_id=404843843 instance=ExtResource("13_aees8")]
+position = Vector2(192, 928)
+CAN_USE_GOD_MODE = true
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="LBoarder" unique_id=816935427]
-shape = SubResource("WorldBoundaryShape2D_iaow0")
-metadata/_edit_lock_ = true
+[node name="PlayerCamera" parent="Player" index="0" unique_id=744180924]
+limit_right = 2000
+
+[node name="Goal" parent="." unique_id=1043991833 instance=ExtResource("9_2cgwh")]
+position = Vector2(1280, 640)
+level = ExtResource("4_mie3u")
 
 [node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=1626687353]
+material = ExtResource("5_mie3u")
 position = Vector2(0, 960)
-tile_map_data = PackedByteArray("AAAAAAEAAQAAAAAAAQABAAAAAQAAAAAAAQABAAEAAQAAAAAAAQACAAAAAQAAAAAAAQACAAEAAQAAAAAAAQADAAAAAQAAAAAAAQADAAEAAQAAAAAAAQAEAAAAAQAAAAAAAQAEAAEAAQAAAAAAAQAFAAAAAQAAAAAAAQAFAAEAAQAAAAAAAQAGAAAAAQAAAAAAAQAGAAEAAQAAAAAAAQAHAAAAAQAAAAAAAQAHAAEAAQAAAAAAAQAIAAAAAQAAAAAAAQAIAAEAAQAAAAAAAQAJAAAAAQAAAAAAAQAJAAEAAQAAAAAAAQAKAAAAAQAAAAAAAQAKAAEAAQAAAAAAAQALAAAAAQAAAAAAAQALAAEAAQAAAAAAAQAMAAAAAQAAAAAAAQAMAAEAAQAAAAAAAQANAAAAAQAAAAAAAQANAAEAAQAAAAAAAQAOAAAAAQAAAAAAAQAOAAEAAQAAAAAAAQAPAAAAAQAAAAAAAQAPAAEAAQAAAAAAAQAQAAAAAQAAAAAAAQAQAAEAAQAAAAAAAQARAAAAAQAAAAAAAQARAAEAAQAAAAAAAQAXAAAAAQAAAAAAAQAXAAEAAQAAAAAAAQAYAAAAAQAAAAAAAQAYAAEAAQAAAAAAAQAZAAAAAQAAAAAAAQAZAAEAAQAAAAAAAQAaAAAAAQAAAAAAAQAaAAEAAQAAAAAAAQAbAAAAAQAAAAAAAQAbAAEAAQAAAAAAAQAcAAAAAQAAAAAAAQAcAAEAAQAAAAAAAQAdAAAAAQAAAAAAAQAdAAEAAQAAAAAAAQAAAAIAAQAAAAAAAQAAAAMAAQAAAAAAAQABAAIAAQAAAAAAAQABAAMAAQAAAAAAAQACAAIAAQAAAAAAAQACAAMAAQAAAAAAAQADAAIAAQAAAAAAAQADAAMAAQAAAAAAAQAEAAIAAQAAAAAAAQAEAAMAAQAAAAAAAQAFAAIAAQAAAAAAAQAFAAMAAQAAAAAAAQAGAAIAAQAAAAAAAQAGAAMAAQAAAAAAAQAHAAIAAQAAAAAAAQAHAAMAAQAAAAAAAQAIAAIAAQAAAAAAAQAIAAMAAQAAAAAAAQAJAAIAAQAAAAAAAQAJAAMAAQAAAAAAAQAKAAIAAQAAAAAAAQAKAAMAAQAAAAAAAQALAAIAAQAAAAAAAQALAAMAAQAAAAAAAQAMAAIAAQAAAAAAAQAMAAMAAQAAAAAAAQANAAIAAQAAAAAAAQANAAMAAQAAAAAAAQAOAAIAAQAAAAAAAQAOAAMAAQAAAAAAAQAPAAIAAQAAAAAAAQAPAAMAAQAAAAAAAQAQAAIAAQAAAAAAAQAQAAMAAQAAAAAAAQARAAIAAQAAAAAAAQARAAMAAQAAAAAAAQAXAAIAAQAAAAAAAQAXAAMAAQAAAAAAAQAYAAIAAQAAAAAAAQAYAAMAAQAAAAAAAQAZAAIAAQAAAAAAAQAZAAMAAQAAAAAAAQAaAAIAAQAAAAAAAQAaAAMAAQAAAAAAAQAbAAIAAQAAAAAAAQAbAAMAAQAAAAAAAQAcAAIAAQAAAAAAAQAcAAMAAQAAAAAAAQAdAAIAAQAAAAAAAQAdAAMAAQAAAAAAAQAeAAAAAQAAAAAAAQAeAAEAAQAAAAAAAQAeAAIAAQAAAAAAAQAeAAMAAQAAAAAAAQAfAAAAAQAAAAAAAQAfAAEAAQAAAAAAAQAfAAIAAQAAAAAAAQAfAAMAAQAAAAAAAQANAP7/AQAAAAAAAQAAAAAAAQAAAAAAAQA=")
+tile_map_data = PackedByteArray("AAAAAAEAAQAAAAAAAQABAAAAAQAAAAAAAQABAAEAAQAAAAAAAQACAAAAAQAAAAAAAQACAAEAAQAAAAAAAQADAAAAAQAAAAAAAQADAAEAAQAAAAAAAQAEAAAAAQAAAAAAAQAEAAEAAQAAAAAAAQAFAAAAAQAAAAAAAQAFAAEAAQAAAAAAAQAGAAAAAQAAAAAAAQAGAAEAAQAAAAAAAQAHAAAAAQAAAAAAAQAHAAEAAQAAAAAAAQAIAAAAAQAAAAAAAQAIAAEAAQAAAAAAAQAJAAAAAQAAAAAAAQAJAAEAAQAAAAAAAQAKAAAAAQAAAAAAAQAKAAEAAQAAAAAAAQALAAAAAQAAAAAAAQALAAEAAQAAAAAAAQAMAAAAAQAAAAAAAQAMAAEAAQAAAAAAAQANAAAAAQAAAAAAAQANAAEAAQAAAAAAAQAOAAAAAQAAAAAAAQAOAAEAAQAAAAAAAQAPAAAAAQAAAAAAAQAPAAEAAQAAAAAAAQAQAAAAAQAAAAAAAQAQAAEAAQAAAAAAAQAAAAIAAQAAAAAAAQAAAAMAAQAAAAAAAQABAAIAAQAAAAAAAQABAAMAAQAAAAAAAQACAAIAAQAAAAAAAQACAAMAAQAAAAAAAQADAAIAAQAAAAAAAQADAAMAAQAAAAAAAQAEAAIAAQAAAAAAAQAEAAMAAQAAAAAAAQAFAAIAAQAAAAAAAQAFAAMAAQAAAAAAAQAGAAIAAQAAAAAAAQAGAAMAAQAAAAAAAQAHAAIAAQAAAAAAAQAHAAMAAQAAAAAAAQAIAAIAAQAAAAAAAQAIAAMAAQAAAAAAAQAJAAIAAQAAAAAAAQAJAAMAAQAAAAAAAQAKAAIAAQAAAAAAAQAKAAMAAQAAAAAAAQALAAIAAQAAAAAAAQALAAMAAQAAAAAAAQAMAAIAAQAAAAAAAQAMAAMAAQAAAAAAAQANAAIAAQAAAAAAAQANAAMAAQAAAAAAAQAOAAIAAQAAAAAAAQAOAAMAAQAAAAAAAQAPAAIAAQAAAAAAAQAPAAMAAQAAAAAAAQAQAAIAAQAAAAAAAQAQAAMAAQAAAAAAAQANAP7/AQAAAAAAAQAAAAAAAQAAAAAAAQA=")
 tile_set = ExtResource("2_aees8")
 
 [node name="1" type="StaticBody2D" parent="." unique_id=1950348525 node_paths=PackedStringArray("box", "collision_2d", "sprite_2d")]
@@ -58,8 +53,8 @@ collision_2d = NodePath("CollisionShape2D")
 sprite_2d = NodePath("Sprite2D")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="1" unique_id=415246921]
+position = Vector2(0, 96)
 shape = SubResource("RectangleShape2D_iaow0")
-metadata/_edit_lock_ = true
 
 [node name="Sprite2D" type="Sprite2D" parent="1" unique_id=203417538]
 material = ExtResource("15_7nf3m")
@@ -69,10 +64,6 @@ scale = Vector2(0.50000024, 0.5000001)
 texture = ExtResource("12_aees8")
 region_enabled = true
 region_rect = Rect2(0, 128, 384, 256)
-
-[node name="Goal" parent="." unique_id=1043991833 instance=ExtResource("9_2cgwh")]
-position = Vector2(1280, 640)
-level = ExtResource("10_iaow0")
 
 [node name="2" type="StaticBody2D" parent="." unique_id=389567986 node_paths=PackedStringArray("box", "collision_2d", "sprite_2d")]
 position = Vector2(1280, 864)
@@ -95,35 +86,24 @@ texture = ExtResource("12_aees8")
 region_enabled = true
 region_rect = Rect2(0, 128, 384, 256)
 
-[node name="Player" parent="." unique_id=404843843 instance=ExtResource("13_aees8")]
-position = Vector2(192, 928)
-
-[node name="PlayerCamera" type="Camera2D" parent="Player" unique_id=948493327 node_paths=PackedStringArray("PLAYER")]
-limit_left = 0
-limit_right = 2000
-limit_bottom = 1080
-script = ExtResource("14_mie3u")
-PLAYER = NodePath("..")
-metadata/_custom_type_script = "uid://c52xh8xbqn2i1"
-
 [node name="BoxInterface" parent="." unique_id=2091224111 instance=ExtResource("10_qpfo2")]
 
 [node name="Item" parent="BoxInterface/PanelContainer/VBoxContainer/PanelContainer/InsideBox" parent_id_path=PackedInt32Array(2091224111, 527385168) index="0" unique_id=540643436 node_paths=PackedStringArray("object") instance=ExtResource("5_2cgwh")]
 material = ExtResource("8_0qy5o")
 layout_mode = 2
 icon = ExtResource("5_0qy5o")
-item = ExtResource("6_yb21e")
 id = 2
 object = NodePath("../../../../../../2")
 
 [node name="Item1" parent="BoxInterface/PanelContainer/VBoxContainer/OutsideBox" parent_id_path=PackedInt32Array(2091224111, 1854341907) index="0" unique_id=1726545559 node_paths=PackedStringArray("object")]
 material = ExtResource("15_7nf3m")
 icon = ExtResource("5_0qy5o")
-item = ExtResource("6_yb21e")
 id = 1
 object = NodePath("../../../../../1")
 
 [node name="Item2" parent="BoxInterface/PanelContainer/VBoxContainer/OutsideBox" parent_id_path=PackedInt32Array(2091224111, 1854341907) index="1" unique_id=1842494652]
 material = ExtResource("15_0qy5o")
 
+[editable path="Borders"]
+[editable path="Player"]
 [editable path="BoxInterface"]

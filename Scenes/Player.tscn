@@ -27,6 +27,8 @@
 [ext_resource type="Texture2D" uid="uid://bxhom6aytxunj" path="res://Assets/Sprites/Player/WalkFrames/Frame0008.png" id="25_y6y60"]
 [ext_resource type="Texture2D" uid="uid://cnk1le3oqyomo" path="res://Assets/Sprites/Player/WalkFrames/Frame0009.png" id="26_vmcrb"]
 [ext_resource type="Texture2D" uid="uid://bbkj3focfnbmw" path="res://Assets/Sprites/Player/WalkFrames/Frame0010.png" id="27_teras"]
+[ext_resource type="Script" uid="uid://di4wcmk24kyiq" path="res://Scripts/States/god_mode.gd" id="28_utwlt"]
+[ext_resource type="Script" uid="uid://c52xh8xbqn2i1" path="res://Scripts/player_cam.gd" id="29_kih0c"]
 
 [sub_resource type="Resource" id="Resource_hixwb"]
 script = ExtResource("2_8erm5")
@@ -130,6 +132,14 @@ CHARACTER_ANIMATED_SPRITE = NodePath("AnimatedSprite2D")
 properties = SubResource("Resource_hixwb")
 state_machine = NodePath("StateMachine")
 
+[node name="PlayerCamera" type="Camera2D" parent="." unique_id=744180924 node_paths=PackedStringArray("PLAYER")]
+limit_left = 0
+limit_right = 1920
+limit_bottom = 1080
+script = ExtResource("29_kih0c")
+PLAYER = NodePath("..")
+metadata/_custom_type_script = "uid://c52xh8xbqn2i1"
+
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=396514442]
 scale = Vector2(0.5, 0.5)
 sprite_frames = SubResource("SpriteFrames_bhhdu")
@@ -209,8 +219,13 @@ metadata/_custom_type_script = "uid://d1iwjkvirj3nw"
 script = ExtResource("7_3smsa")
 metadata/_custom_type_script = "uid://dfwxkgpoc4wi"
 
+[node name="GodMode" type="Node" parent="StateMachine" unique_id=470032254]
+script = ExtResource("28_utwlt")
+metadata/_custom_type_script = "uid://di4wcmk24kyiq"
+
 [connection signal="state_machine_path" from="StateMachine" to="StateMachine/Idle" method="recieve_state_machine"]
 [connection signal="state_machine_path" from="StateMachine" to="StateMachine/Horizontal/Walk" method="recieve_state_machine"]
 [connection signal="state_machine_path" from="StateMachine" to="StateMachine/Horizontal/Run" method="recieve_state_machine"]
 [connection signal="state_machine_path" from="StateMachine" to="StateMachine/Vertical/Jump" method="recieve_state_machine"]
 [connection signal="state_machine_path" from="StateMachine" to="StateMachine/Vertical/Fall" method="recieve_state_machine"]
+[connection signal="state_machine_path" from="StateMachine" to="StateMachine/GodMode" method="recieve_state_machine"]

@@ -1,6 +1,7 @@
 res://Scripts/
-res://Scripts/ResourceScripts/Resources/
 res://Scenes/
+res://Scripts/States/
+res://Scripts/ResourceScripts/Resources/
 res://Assets/Sprites/Block/
 res://Scripts/ResourceScripts/Resources/ObjectColors/
 res://Assets/Sprites/

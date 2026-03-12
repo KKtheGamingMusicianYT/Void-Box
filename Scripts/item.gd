@@ -65,7 +65,6 @@ func _create_preview() -> void:
 	var control_for_preview = Control.new()
 	# Add the preview to the control node's tree
 	control_for_preview.add_child(preview)
-	print(preview.material)
 	# Adjust the position
 	preview.position = Vector2(-64, -64)
 	set_drag_preview(control_for_preview)

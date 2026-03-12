@@ -2,6 +2,7 @@ extends CharacterBody
 class_name Player
 
 @export var BUFFER_JUMP_TIMER : Timer
+@export var CAN_USE_GOD_MODE : bool = false
 @export_group("Physics HitBoxes")
 
 @export var SMALL_PHYSICS_BOX : CollisionShape2D
@@ -18,7 +19,7 @@ var collision_shape : CollisionShape2D
 @export var CLIP_RIGHT : RayCast2D
 @export var CEILING_SENSOR : ShapeCast2D
 
-@export_group("Health and Power-ups")
+@export_group("Health")
 @export var HEALTH : int = 2
 
 @export_group("Sprites")
@@ -33,6 +34,7 @@ enum { # Available states for the Player for readability. Index used by the poss
 	RUN,
 	JUMP,
 	FALL,
+	GOD_MODE,
 }
 
 func _ready() -> void:
@@ -76,6 +78,9 @@ func _match_states() -> void:
 			_check_just_left_floor()
 			COYOTE_BOX.disabled = true
 			_animate("Idle")
+			if Input.is_action_just_released("God_Mode"):
+				if CAN_USE_GOD_MODE == true:
+					change_state(GOD_MODE)
 		WALK:
 			if not direction:
 				change_state(IDLE)
@@ -125,6 +130,12 @@ func _match_states() -> void:
 						change_state(WALK)
 				else:
 					change_state(IDLE)
+		GOD_MODE:
+			var dir_vec2 : Vector2 = Vector2(Input.get_axis("Move_Left", "Move_Right"), Input.get_axis("ui_down", "ui_up"))
+			properties.VELOCITY = Vector2(700, -700)
+			properties.VELOCITY *= dir_vec2
+			if Input.is_action_pressed("God_Mode"):
+				change_state(IDLE)
 
 func _check_jumping() -> void:
 	jumping = properties.JUMPING_FRAMES

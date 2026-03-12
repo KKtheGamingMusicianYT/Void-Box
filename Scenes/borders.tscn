@@ -1,0 +1,24 @@
+[gd_scene format=3 uid="uid://b55edq5uh3pp3"]
+
+[ext_resource type="Script" uid="uid://2bnf5vqwki2g" path="res://Scripts/follow_cam.gd" id="1_1r7dd"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_a7e48"]
+normal = Vector2(-1, 0)
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_p8jor"]
+normal = Vector2(1, 0)
+
+[node name="Borders" type="Node2D" unique_id=999858988]
+
+[node name="RBoarder" type="StaticBody2D" parent="." unique_id=932751578]
+position = Vector2(1808, 0)
+script = ExtResource("1_1r7dd")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RBoarder" unique_id=1388703411]
+shape = SubResource("WorldBoundaryShape2D_a7e48")
+
+[node name="LBoarder" type="StaticBody2D" parent="." unique_id=1302402448]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LBoarder" unique_id=435130306]
+position = Vector2(32, 0)
+shape = SubResource("WorldBoundaryShape2D_p8jor")
