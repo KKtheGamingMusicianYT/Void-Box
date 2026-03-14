@@ -1,6 +1,8 @@
 extends CharacterBody
 class_name Player
 
+const PUSH_FORCE : float = 30.0
+
 @export var BUFFER_JUMP_TIMER : Timer
 @export var CAN_USE_GOD_MODE : bool = false
 @export_group("Physics HitBoxes")
@@ -48,6 +50,12 @@ func _physics_process(_delta: float) -> void:
 	_update_physics_box()
 	_handle_player_input()
 	move_and_slide()
+	for i in get_slide_collision_count():
+		var c = get_slide_collision(i)
+		if c.get_collider() is RigidBody2D:
+			var push_force = (PUSH_FORCE * velocity.x / properties.VELOCITY.x) + 15
+			c.get_collider().apply_central_impulse(Vector2(direction, 0) * push_force) #* -c.get_normal())
+			print(push_force)
 
 func _handle_player_input() -> void:
 	direction = Input.get_axis("Move_Left", "Move_Right")

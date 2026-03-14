@@ -42,34 +42,35 @@ camera = NodePath("../../Player/PlayerCamera")
 position = Vector2(184, 928)
 
 [node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=1963785752]
-position = Vector2(0, -64)
+position = Vector2(-64, -64)
 tile_map_data = PackedByteArray("AAAAAAgAAQAAAAAAAQABAAgAAQAAAAAAAQACAAgAAQAAAAAAAQACAAkAAQAAAAAAAQADAAkAAQAAAAAAAQAEAAkAAQAAAAAAAQAFAAkAAQAAAAAAAQAGAAgAAQAAAAAAAQAHAAgAAQAAAAAAAQAIAAgAAQAAAAAAAQAFAAgAAQAAAAAAAQAEAAgAAQAAAAAAAQADAAgAAQAAAAAAAQABAAkAAQAAAAAAAQAAAAkAAQAAAAAAAQAGAAkAAQAAAAAAAQAHAAkAAQAAAAAAAQAIAAkAAQAAAAAAAQAJAAkAAQAAAAAAAQAKAAkAAQAAAAAAAQALAAkAAQAAAAAAAQAMAAkAAQAAAAAAAQANAAkAAQAAAAAAAQAOAAkAAQAAAAAAAQAPAAkAAQAAAAAAAQAPAAgAAQAAAAAAAQAOAAgAAQAAAAAAAQANAAgAAQAAAAAAAQAMAAgAAQAAAAAAAQALAAgAAQAAAAAAAQAKAAgAAQAAAAAAAQAJAAgAAQAAAAAAAQA=")
 tile_set = ExtResource("2_7p6j4")
 
-[node name="1" type="StaticBody2D" parent="." unique_id=102639431 node_paths=PackedStringArray("box", "collision_2d", "sprite_2d")]
-position = Vector2(1184, 736)
+[node name="1" type="StaticBody2D" parent="." unique_id=102639431 node_paths=PackedStringArray("box", "collision_2d")]
+position = Vector2(1184, 768)
 script = ExtResource("10_af3po")
 box = NodePath("../BoxInterface/PanelContainer/VBoxContainer/PanelContainer/InsideBox")
 collision_2d = NodePath("CollisionShape2D")
-sprite_2d = NodePath("Sprite2D")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="1" unique_id=72827519]
 position = Vector2(-160, 64)
 shape = SubResource("RectangleShape2D_af3po")
+metadata/_edit_lock_ = true
 
 [node name="Sprite2D" type="Sprite2D" parent="1" unique_id=1153995513]
 material = ExtResource("6_xrdnt")
 position = Vector2(-160.00003, 32.000015)
 scale = Vector2(1.3333334, 0.5)
 texture = ExtResource("10_chwpn")
+metadata/_edit_lock_ = true
 
-[node name="2" type="RigidBody2D" parent="." unique_id=1556049865 node_paths=PackedStringArray("box", "collision_2d", "sprite_2d")]
+[node name="2" type="RigidBody2D" parent="." unique_id=1556049865 node_paths=PackedStringArray("box", "collision_2d")]
 position = Vector2(1280, 704)
+mass = 0.5
 script = ExtResource("10_af3po")
 id = 2
 box = NodePath("../BoxInterface/PanelContainer/VBoxContainer/PanelContainer/InsideBox")
 collision_2d = NodePath("CollisionShape2D")
-sprite_2d = NodePath("Sprite2D")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="2" unique_id=940290411]
 shape = SubResource("RectangleShape2D_oovug")

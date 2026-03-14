@@ -111,7 +111,7 @@ size = Vector2(32, 56)
 size = Vector2(64, 64)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ksbbd"]
-size = Vector2(80, 8)
+size = Vector2(48, 8)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_glx4g"]
 size = Vector2(10, 10)
@@ -159,15 +159,14 @@ shape = SubResource("RectangleShape2D_megsn")
 metadata/_edit_lock_ = true
 
 [node name="CoyoteBox" type="CollisionPolygon2D" parent="." unique_id=780247785]
-position = Vector2(-32, -8)
-polygon = PackedVector2Array(-32, 40, 32, 40, 32, 24, -32, 24)
+position = Vector2(-24, -8)
+polygon = PackedVector2Array(-16, 40, 16, 40, 16, 24, -16, 24)
 disabled = true
 one_way_collision = true
-metadata/_edit_lock_ = true
 
 [node name="GapCensor" type="RayCast2D" parent="." unique_id=1998703868]
-target_position = Vector2(0, 72)
-metadata/_edit_lock_ = true
+position = Vector2(0, 32)
+target_position = Vector2(0, 32)
 
 [node name="FloorWallCensor" type="ShapeCast2D" parent="." unique_id=2092207570]
 position = Vector2(32, 32)
@@ -178,7 +177,6 @@ metadata/_edit_lock_ = true
 [node name="GapBox" type="CollisionShape2D" parent="." unique_id=514765509]
 position = Vector2(0, 28)
 shape = SubResource("RectangleShape2D_ksbbd")
-metadata/_edit_lock_ = true
 
 [node name="ClipCeilingSensors" type="Node2D" parent="." unique_id=910299419]
 metadata/_edit_lock_ = true
