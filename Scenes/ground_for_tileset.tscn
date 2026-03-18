@@ -12,7 +12,7 @@ colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0)
 metadata/_snap_enabled = true
 metadata/_snap_count = 20
 
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_jv3fj"]
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_8yhm2"]
 gradient = SubResource("Gradient_oovug")
 fill = 2
 fill_from = Vector2(0.5, 0.5)
@@ -36,4 +36,6 @@ region_rect = Rect2(128, 128, 256, 256)
 [node name="PointLight2D" type="PointLight2D" parent="." unique_id=470047732]
 position = Vector2(-1.5258789e-05, 9.536743e-06)
 scale = Vector2(5.9999995, 5.9999995)
-texture = SubResource("GradientTexture2D_jv3fj")
+energy = 2.0
+blend_mode = 2
+texture = SubResource("GradientTexture2D_8yhm2")

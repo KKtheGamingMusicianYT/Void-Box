@@ -1,0 +1,117 @@
+[gd_scene format=4 uid="uid://6oispmhnqw68"]
+
+[ext_resource type="PackedScene" uid="uid://b55edq5uh3pp3" path="res://Scenes/borders.tscn" id="1_c81s1"]
+[ext_resource type="PackedScene" uid="uid://b38x0l1gd3w7w" path="res://Scenes/Player.tscn" id="2_n4vm5"]
+[ext_resource type="TileSet" uid="uid://dpqhevuc17ijh" path="res://Resources/block_tileset.tres" id="3_fxnjf"]
+[ext_resource type="Script" uid="uid://l47uf8luj8s6" path="res://Scripts/node_with_id.gd" id="4_xjeco"]
+[ext_resource type="Material" uid="uid://dy384xgghatsr" path="res://Resources/ObjectColors/royal_blue.tres" id="5_j77fg"]
+[ext_resource type="Texture2D" uid="uid://bn6l2vtf6ruv0" path="res://Assets/Sprites/Block/Size0001.png" id="6_ki8bc"]
+[ext_resource type="Material" uid="uid://3otlrtqob3g" path="res://Resources/ObjectColors/hot_pink.tres" id="7_nbwsh"]
+[ext_resource type="Texture2D" uid="uid://bx1hsboq4euo8" path="res://Assets/Sprites/Block/Size0002.png" id="8_kgmqw"]
+[ext_resource type="PackedScene" uid="uid://coefif7s7p7tm" path="res://Scenes/box_interface.tscn" id="9_s80er"]
+[ext_resource type="PackedScene" uid="uid://bx7japdg7ed76" path="res://Scenes/item.tscn" id="10_8jhox"]
+[ext_resource type="Texture2D" uid="uid://clg8samn7gqkr" path="res://Assets/Sprites/Block/Size0000.png" id="11_hed5s"]
+[ext_resource type="Script" uid="uid://dd25n2sul3wg4" path="res://Scripts/ResourceScripts/item_data.gd" id="12_yykrm"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_af3po"]
+size = Vector2(288, 128)
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_ait6c"]
+
+[sub_resource type="Resource" id="Resource_6r07y"]
+script = ExtResource("12_yykrm")
+volume = 4
+icon = ExtResource("11_hed5s")
+metadata/_custom_type_script = "uid://dd25n2sul3wg4"
+
+[sub_resource type="Resource" id="Resource_6ioyp"]
+script = ExtResource("12_yykrm")
+volume = 1
+icon = ExtResource("11_hed5s")
+metadata/_custom_type_script = "uid://dd25n2sul3wg4"
+
+[node name="Level3" type="Node2D" unique_id=685188657]
+
+[node name="Borders" parent="." unique_id=999858988 instance=ExtResource("1_c81s1")]
+
+[node name="RBoarder" parent="Borders" index="0" unique_id=932751578 node_paths=PackedStringArray("camera")]
+camera = NodePath("../../Player/PlayerCamera")
+
+[node name="Player" parent="." unique_id=404843843 instance=ExtResource("2_n4vm5")]
+position = Vector2(176, 928)
+
+[node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=1963785752]
+position = Vector2(-64, -64)
+tile_map_data = PackedByteArray("AAAAAAgAAQAAAAAAAQABAAgAAQAAAAAAAQACAAgAAQAAAAAAAQACAAkAAQAAAAAAAQADAAkAAQAAAAAAAQAEAAkAAQAAAAAAAQAFAAkAAQAAAAAAAQAGAAgAAQAAAAAAAQAHAAgAAQAAAAAAAQAIAAgAAQAAAAAAAQAFAAgAAQAAAAAAAQAEAAgAAQAAAAAAAQADAAgAAQAAAAAAAQABAAkAAQAAAAAAAQAAAAkAAQAAAAAAAQAGAAkAAQAAAAAAAQAHAAkAAQAAAAAAAQAIAAkAAQAAAAAAAQAJAAkAAQAAAAAAAQAKAAkAAQAAAAAAAQALAAkAAQAAAAAAAQAMAAkAAQAAAAAAAQANAAkAAQAAAAAAAQAOAAkAAQAAAAAAAQAPAAkAAQAAAAAAAQAPAAgAAQAAAAAAAQAOAAgAAQAAAAAAAQANAAgAAQAAAAAAAQAMAAgAAQAAAAAAAQALAAgAAQAAAAAAAQAKAAgAAQAAAAAAAQAJAAgAAQAAAAAAAQA=")
+tile_set = ExtResource("3_fxnjf")
+
+[node name="1" type="StaticBody2D" parent="." unique_id=102639431 node_paths=PackedStringArray("box")]
+position = Vector2(568, 768)
+script = ExtResource("4_xjeco")
+box = NodePath("../BoxInterface/PanelContainer/VBoxContainer/PanelContainer/InsideBox")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="1" unique_id=72827519]
+shape = SubResource("RectangleShape2D_af3po")
+metadata/_edit_lock_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="1" unique_id=1153995513]
+material = ExtResource("5_j77fg")
+position = Vector2(0, -32)
+scale = Vector2(0.75, 0.5)
+texture = ExtResource("6_ki8bc")
+metadata/_edit_lock_ = true
+
+[node name="2" type="RigidBody2D" parent="." unique_id=1556049865 node_paths=PackedStringArray("box")]
+position = Vector2(576, 672)
+collision_mask = 3
+physics_material_override = SubResource("PhysicsMaterial_ait6c")
+gravity_scale = 2.0
+center_of_mass_mode = 1
+center_of_mass = Vector2(32, 32)
+lock_rotation = true
+script = ExtResource("4_xjeco")
+id = 2
+box = NodePath("../BoxInterface/PanelContainer/VBoxContainer/PanelContainer/InsideBox")
+
+[node name="Sprite2D" type="Sprite2D" parent="2" unique_id=1678216343]
+material = ExtResource("7_nbwsh")
+position = Vector2(-16, -16)
+scale = Vector2(0.24999996, 0.25000006)
+texture = ExtResource("8_kgmqw")
+metadata/_edit_lock_ = true
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="2" unique_id=1335440560]
+polygon = PackedVector2Array(-32, -32, 32, -32, 32, 24, 16, 30, 0, 32, -16, 30, -32, 24)
+metadata/_edit_lock_ = true
+
+[node name="BoxInterface" parent="." unique_id=2091224111 instance=ExtResource("9_s80er")]
+
+[node name="Item" parent="BoxInterface/PanelContainer/VBoxContainer/PanelContainer/InsideBox" parent_id_path=PackedInt32Array(2091224111, 527385168) index="0" unique_id=540643436 instance=ExtResource("10_8jhox")]
+layout_mode = 2
+
+[node name="Item2" parent="BoxInterface/PanelContainer/VBoxContainer/PanelContainer/InsideBox" parent_id_path=PackedInt32Array(2091224111, 527385168) index="1" unique_id=1828514067 instance=ExtResource("10_8jhox")]
+layout_mode = 2
+
+[node name="Item3" parent="BoxInterface/PanelContainer/VBoxContainer/PanelContainer/InsideBox" parent_id_path=PackedInt32Array(2091224111, 527385168) index="2" unique_id=2070159129 instance=ExtResource("10_8jhox")]
+layout_mode = 2
+
+[node name="Item4" parent="BoxInterface/PanelContainer/VBoxContainer/PanelContainer/InsideBox" parent_id_path=PackedInt32Array(2091224111, 527385168) index="3" unique_id=1878750815 instance=ExtResource("10_8jhox")]
+layout_mode = 2
+
+[node name="Item1" parent="BoxInterface/PanelContainer/VBoxContainer/OutsideBox" parent_id_path=PackedInt32Array(2091224111, 1854341907) index="0" unique_id=1726545559 node_paths=PackedStringArray("object")]
+material = ExtResource("5_j77fg")
+icon = ExtResource("11_hed5s")
+item = SubResource("Resource_6r07y")
+id = 1
+object = NodePath("../../../../../1")
+
+[node name="Item2" parent="BoxInterface/PanelContainer/VBoxContainer/OutsideBox" parent_id_path=PackedInt32Array(2091224111, 1854341907) index="1" unique_id=1842494652 node_paths=PackedStringArray("object")]
+material = ExtResource("7_nbwsh")
+icon = ExtResource("11_hed5s")
+item = SubResource("Resource_6ioyp")
+id = 2
+object = NodePath("../../../../../2")
+
+[editable path="Borders"]
+[editable path="Player"]
+[editable path="BoxInterface"]

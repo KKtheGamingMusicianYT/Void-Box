@@ -1,0 +1,28 @@
+[gd_scene format=3 uid="uid://b1ytlcx85siou"]
+
+[ext_resource type="Material" uid="uid://bkxbwyecreq0c" path="res://Resources/ObjectColors/violet.tres" id="1_qbebp"]
+
+[sub_resource type="Gradient" id="Gradient_j34yr"]
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_i20ss"]
+gradient = SubResource("Gradient_j34yr")
+width = 1920
+height = 1080
+fill_from = Vector2(0.5, 1)
+fill_to = Vector2(0.5, 0)
+metadata/_snap_enabled = true
+
+[node name="SkyBox" type="Node2D" unique_id=1652161055]
+
+[node name="CanvasModulate" type="CanvasModulate" parent="." unique_id=778874230]
+color = Color(0.1916666, 0, 0.5, 1)
+
+[node name="Background" type="Parallax2D" parent="." unique_id=567555795]
+scroll_scale = Vector2(0, 0)
+
+[node name="Polygon2D" type="Polygon2D" parent="Background" unique_id=1824874779]
+light_mask = 0
+material = ExtResource("1_qbebp")
+color = Color(0.27058825, 0, 0, 1)
+texture = SubResource("GradientTexture2D_i20ss")
+polygon = PackedVector2Array(-32, -32, 1952, -32, 1952, 1152, -32, 1152)

@@ -1,5 +1,6 @@
 [gd_scene format=4 uid="uid://ig4368f766is"]
 
+[ext_resource type="PackedScene" uid="uid://b1ytlcx85siou" path="res://Scenes/sky_box.tscn" id="1_6ioyp"]
 [ext_resource type="Material" uid="uid://hs6fydc27bmt" path="res://Resources/ObjectColors/kk_pink.tres" id="1_7p6j4"]
 [ext_resource type="PackedScene" uid="uid://b38x0l1gd3w7w" path="res://Scenes/Player.tscn" id="1_vk57k"]
 [ext_resource type="TileSet" uid="uid://dpqhevuc17ijh" path="res://Resources/block_tileset.tres" id="3_7p6j4"]
@@ -13,16 +14,6 @@
 [ext_resource type="Script" uid="uid://dd25n2sul3wg4" path="res://Scripts/ResourceScripts/item_data.gd" id="9_uy8f0"]
 [ext_resource type="PackedScene" uid="uid://lantacwmwc42" path="res://Scenes/level_2.tscn" id="10_6ioyp"]
 [ext_resource type="Material" uid="uid://bdjajef7ak5x8" path="res://Resources/ObjectColors/teal.tres" id="12_uy8f0"]
-
-[sub_resource type="Gradient" id="Gradient_8i23i"]
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_pjppf"]
-gradient = SubResource("Gradient_8i23i")
-width = 1920
-height = 1080
-fill_from = Vector2(0.5, 1)
-fill_to = Vector2(0.5, 0)
-metadata/_snap_enabled = true
 
 [sub_resource type="Resource" id="Resource_uy8f0"]
 script = ExtResource("9_uy8f0")
@@ -74,48 +65,9 @@ metadata/_snap_enabled = true
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_6ioyp"]
 load_path = "res://.godot/imported/Size0002.png-a5caec008f90b38f2eea7e3c86c7d68c.ctex"
 
-[sub_resource type="Gradient" id="Gradient_pjppf"]
-offsets = PackedFloat32Array(0, 0.6, 1)
-colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0)
-metadata/_snap_enabled = true
-metadata/_snap_count = 20
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_yltlr"]
-gradient = SubResource("Gradient_pjppf")
-fill = 2
-fill_from = Vector2(0.5, 0.5)
-fill_to = Vector2(0.5, 0)
-metadata/_snap_enabled = true
-
-[sub_resource type="Gradient" id="Gradient_6ssoq"]
-offsets = PackedFloat32Array(0, 0.65, 1)
-colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0)
-metadata/_snap_enabled = true
-metadata/_snap_count = 20
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_8i23i"]
-gradient = SubResource("Gradient_6ssoq")
-fill = 2
-fill_from = Vector2(0.5, 0.5)
-fill_to = Vector2(0.5, 0)
-metadata/_snap_enabled = true
-
 [node name="Level1" type="Node2D" unique_id=52299712]
 
-[node name="CanvasModulate" type="CanvasModulate" parent="." unique_id=1181792255]
-color = Color(0.7490196, 0.6745098, 0.9019608, 1)
-metadata/_edit_lock_ = true
-
-[node name="Background" type="Parallax2D" parent="." unique_id=198540736]
-scroll_scale = Vector2(0, 0)
-
-[node name="Polygon2D" type="Polygon2D" parent="Background" unique_id=1630605598]
-light_mask = 0
-material = ExtResource("7_chwpn")
-color = Color(0.27058825, 0, 0, 1)
-texture = SubResource("GradientTexture2D_pjppf")
-polygon = PackedVector2Array(-32, -32, 1952, -32, 1952, 1152, -32, 1152)
-metadata/_edit_lock_ = true
+[node name="SkyBox" parent="." unique_id=1652161055 instance=ExtResource("1_6ioyp")]
 
 [node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=381755357]
 material = ExtResource("1_7p6j4")
@@ -233,7 +185,7 @@ position = Vector2(128, -48.00003)
 scale = Vector2(3.0000024, 4.5)
 energy = 2.0
 blend_mode = 2
-texture = SubResource("GradientTexture2D_yltlr")
+texture = SubResource("GradientTexture2D_oovug")
 
 [node name="Sprite3" type="Sprite2D" parent="2" unique_id=1458930802]
 material = ExtResource("12_uy8f0")
@@ -244,6 +196,13 @@ region_enabled = true
 region_rect = Rect2(128, 128, 256, 256)
 metadata/_edit_lock_ = true
 
+[node name="PointLight2D3" type="PointLight2D" parent="2" unique_id=1537259528]
+position = Vector2(256.5, -176)
+scale = Vector2(3.0156264, 3.500001)
+energy = 2.0
+blend_mode = 2
+texture = SubResource("GradientTexture2D_8yhm2")
+
 [node name="Sprite4" type="Sprite2D" parent="2" unique_id=1970459715]
 material = ExtResource("12_uy8f0")
 position = Vector2(255.99994, -176)
@@ -253,12 +212,12 @@ region_enabled = true
 region_rect = Rect2(128, 128, 256, 256)
 metadata/_edit_lock_ = true
 
-[node name="PointLight2D3" type="PointLight2D" parent="2" unique_id=1537259528]
-position = Vector2(257, -96.00004)
-scale = Vector2(3.0000024, 6)
+[node name="PointLight2D4" type="PointLight2D" parent="2" unique_id=1451402261]
+position = Vector2(256.50003, -16.000023)
+scale = Vector2(3.0156264, 3.4999995)
 energy = 2.0
 blend_mode = 2
-texture = SubResource("GradientTexture2D_8i23i")
+texture = SubResource("GradientTexture2D_8yhm2")
 
 [editable path="Player"]
 [editable path="Borders"]

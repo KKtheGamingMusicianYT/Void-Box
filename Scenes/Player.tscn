@@ -126,7 +126,7 @@ size = Vector2(64, 64)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_kih0c"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_glx4g"]
-size = Vector2(10, 10)
+size = Vector2(33, 10)
 
 [node name="Player" type="CharacterBody2D" unique_id=404843843 node_paths=PackedStringArray("BUFFER_JUMP_TIMER", "SMALL_PHYSICS_BOX", "COYOTE_BOX", "GAP_BOX", "GAP_CENSOR", "WALL_CENSOR", "FLOOR_WALL_CENSOR", "CLIP_LEFT", "CLIP_RIGHT", "CEILING_SENSOR", "CHARACTER_ANIMATED_SPRITE", "state_machine")]
 z_index = 100

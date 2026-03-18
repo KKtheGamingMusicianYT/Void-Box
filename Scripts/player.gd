@@ -90,7 +90,7 @@ func _match_states() -> void:
 				if CAN_USE_GOD_MODE == true:
 					change_state(GOD_MODE)
 		WALK:
-			_adjust_max_velocity()
+			#_adjust_max_velocity()
 			if not direction:
 				change_state(IDLE)
 			if Input.is_action_pressed("Run"):
@@ -104,7 +104,7 @@ func _match_states() -> void:
 				direction = 0
 			_animate("Walk")
 		RUN:
-			_adjust_max_velocity()
+			#_adjust_max_velocity()
 			if not direction:
 				change_state(IDLE)
 			if not Input.is_action_pressed("Run"):
@@ -188,8 +188,10 @@ func _adjust_max_velocity() -> void:
 
 func _clip_edges(clip_ray : RayCast2D, dir : int) -> void:
 	if clip_ray.is_colliding():
+		if clip_ray.get_collider() is not TileData:
+			return
 		var _collision_point : Vector2 = clip_ray.get_collision_point()/64
-		
+		print(clip_ray.get_collision_point())
 		if clip_ray == CLIP_LEFT:
 			_collision_point = ceil(_collision_point) * 64
 		if clip_ray == CLIP_RIGHT:
