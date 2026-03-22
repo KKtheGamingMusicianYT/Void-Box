@@ -29,6 +29,7 @@
 [ext_resource type="Texture2D" uid="uid://bbkj3focfnbmw" path="res://Assets/Sprites/Player/WalkFrames/Frame0010.png" id="27_teras"]
 [ext_resource type="Script" uid="uid://di4wcmk24kyiq" path="res://Scripts/States/god_mode.gd" id="28_utwlt"]
 [ext_resource type="Script" uid="uid://c52xh8xbqn2i1" path="res://Scripts/player_cam.gd" id="29_kih0c"]
+[ext_resource type="Script" uid="uid://bf5gw5kocc44l" path="res://Scripts/States/get_deaeded.gd" id="30_lyrkg"]
 
 [sub_resource type="Resource" id="Resource_hixwb"]
 script = ExtResource("2_8erm5")
@@ -141,7 +142,10 @@ size = Vector2(33, 10)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_megsn"]
 size = Vector2(32, 56)
 
-[node name="Player" type="CharacterBody2D" unique_id=404843843 node_paths=PackedStringArray("BUFFER_JUMP_TIMER", "SMALL_PHYSICS_BOX", "COYOTE_BOX", "GAP_BOX", "GAP_CENSOR", "WALL_CENSOR", "FLOOR_WALL_CENSOR", "CLIP_LEFT", "CLIP_RIGHT", "CEILING_SENSOR", "CHARACTER_ANIMATED_SPRITE", "state_machine")]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lyrkg"]
+size = Vector2(32, 72)
+
+[node name="Player" type="CharacterBody2D" unique_id=404843843 node_paths=PackedStringArray("BUFFER_JUMP_TIMER", "SMALL_PHYSICS_BOX", "COYOTE_BOX", "GAP_BOX", "GAP_CENSOR", "WALL_CENSOR", "FLOOR_WALL_CENSOR", "CLIP_LEFT", "CLIP_RIGHT", "CEILING_SENSOR", "HITBOX", "CHARACTER_ANIMATED_SPRITE", "state_machine")]
 z_index = 100
 collision_layer = 2
 script = ExtResource("1_v0iea")
@@ -156,6 +160,7 @@ FLOOR_WALL_CENSOR = NodePath("FloorWallCensor")
 CLIP_LEFT = NodePath("ClipCeilingSensors/ClipLeft")
 CLIP_RIGHT = NodePath("ClipCeilingSensors/ClipRight")
 CEILING_SENSOR = NodePath("ClipCeilingSensors/CeilingSensor")
+HITBOX = NodePath("Hitbox")
 CHARACTER_ANIMATED_SPRITE = NodePath("AnimatedSprite2D")
 properties = SubResource("Resource_hixwb")
 state_machine = NodePath("StateMachine")
@@ -255,6 +260,12 @@ position = Vector2(0, 4)
 shape = SubResource("RectangleShape2D_megsn")
 metadata/_edit_lock_ = true
 
+[node name="Hitbox" type="Area2D" parent="." unique_id=517260526]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox" unique_id=848860923]
+position = Vector2(0, -4)
+shape = SubResource("RectangleShape2D_lyrkg")
+
 [node name="StateMachine" type="Node" parent="." unique_id=1805402115 node_paths=PackedStringArray("parent")]
 script = ExtResource("2_cvnsp")
 parent = NodePath("..")
@@ -287,9 +298,14 @@ metadata/_custom_type_script = "uid://dfwxkgpoc4wi"
 script = ExtResource("28_utwlt")
 metadata/_custom_type_script = "uid://di4wcmk24kyiq"
 
+[node name="GetDeaded" type="Node" parent="StateMachine" unique_id=1862029998]
+script = ExtResource("30_lyrkg")
+metadata/_custom_type_script = "uid://bf5gw5kocc44l"
+
 [connection signal="state_machine_path" from="StateMachine" to="StateMachine/Idle" method="recieve_state_machine"]
 [connection signal="state_machine_path" from="StateMachine" to="StateMachine/Horizontal/Walk" method="recieve_state_machine"]
 [connection signal="state_machine_path" from="StateMachine" to="StateMachine/Horizontal/Run" method="recieve_state_machine"]
 [connection signal="state_machine_path" from="StateMachine" to="StateMachine/Vertical/Jump" method="recieve_state_machine"]
 [connection signal="state_machine_path" from="StateMachine" to="StateMachine/Vertical/Fall" method="recieve_state_machine"]
 [connection signal="state_machine_path" from="StateMachine" to="StateMachine/GodMode" method="recieve_state_machine"]
+[connection signal="state_machine_path" from="StateMachine" to="StateMachine/GetDeaded" method="recieve_state_machine"]

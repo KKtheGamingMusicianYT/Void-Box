@@ -49,4 +49,5 @@ position = Vector2(2656, 64)
 [editable path="SkyBox"]
 [editable path="Borders"]
 [editable path="Player"]
+[editable path="DeathBox"]
 [editable path="BoxInterface"]

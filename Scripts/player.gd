@@ -24,6 +24,7 @@ var collision_shape : CollisionShape2D
 
 @export_group("Health")
 @export var HEALTH : int = 2
+@export var HITBOX : Area2D
 
 @export_group("Sprites")
 @export var CHARACTER_ANIMATED_SPRITE : AnimatedSprite2D
@@ -39,6 +40,7 @@ enum { # Available states for the Player for readability. Index used by the poss
 	JUMP,
 	FALL,
 	GOD_MODE,
+	GET_DEADED,
 }
 
 func _ready() -> void:
@@ -148,6 +150,8 @@ func _match_states() -> void:
 			properties.VELOCITY *= dir_vec2
 			if Input.is_action_pressed("God_Mode"):
 				change_state(IDLE)
+		GET_DEADED:
+			return
 
 func _check_jumping() -> void:
 	jumping = properties.JUMPING_FRAMES
