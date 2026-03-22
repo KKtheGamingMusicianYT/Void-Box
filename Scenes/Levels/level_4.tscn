@@ -1,22 +1,170 @@
-[gd_scene format=4 uid="uid://b1l3gwk1jc3bp"]
+[gd_scene format=4 uid="uid://oppo4fj7qhtg"]
 
 [ext_resource type="PackedScene" uid="uid://b1ytlcx85siou" path="res://Scenes/sky_box.tscn" id="1_i1va2"]
-[ext_resource type="Material" uid="uid://d3wvto5rxtohj" path="res://Resources/ObjectColors/black.tres" id="2_h0uxt"]
+[ext_resource type="Material" uid="uid://hs6fydc27bmt" path="res://Resources/ObjectColors/kk_pink.tres" id="2_keyqw"]
 [ext_resource type="TileSet" uid="uid://dpqhevuc17ijh" path="res://Resources/block_tileset.tres" id="2_xq0e5"]
 [ext_resource type="PackedScene" uid="uid://b55edq5uh3pp3" path="res://Scenes/borders.tscn" id="3_6grq2"]
 [ext_resource type="PackedScene" uid="uid://b38x0l1gd3w7w" path="res://Scenes/Player.tscn" id="4_vwhew"]
 [ext_resource type="PackedScene" uid="uid://dhyync7cvqavl" path="res://Scenes/goal.tscn" id="5_t74h0"]
 [ext_resource type="PackedScene" uid="uid://d2hp865b8yt3u" path="res://Scenes/death_box.tscn" id="6_i4hbv"]
 [ext_resource type="PackedScene" uid="uid://coefif7s7p7tm" path="res://Scenes/box_interface.tscn" id="7_i4hbv"]
+[ext_resource type="PackedScene" uid="uid://b1l3gwk1jc3bp" path="res://Scenes/Levels/level_5.tscn" id="7_xpmn3"]
+[ext_resource type="PackedScene" uid="uid://bx7japdg7ed76" path="res://Scenes/item.tscn" id="8_h0uxt"]
+[ext_resource type="Material" uid="uid://bkxbwyecreq0c" path="res://Resources/ObjectColors/violet.tres" id="10_3asqb"]
+[ext_resource type="Texture2D" uid="uid://clg8samn7gqkr" path="res://Assets/Sprites/Block/Size0000.png" id="10_i5g5g"]
+[ext_resource type="Script" uid="uid://l47uf8luj8s6" path="res://Scripts/node_with_id.gd" id="10_slbhm"]
+[ext_resource type="Script" uid="uid://dd25n2sul3wg4" path="res://Scripts/ResourceScripts/item_data.gd" id="11_3osng"]
+[ext_resource type="Material" uid="uid://bdjajef7ak5x8" path="res://Resources/ObjectColors/teal.tres" id="14_3osng"]
+[ext_resource type="Material" uid="uid://3otlrtqob3g" path="res://Resources/ObjectColors/hot_pink.tres" id="15_ecora"]
+[ext_resource type="Texture2D" uid="uid://bx1hsboq4euo8" path="res://Assets/Sprites/Block/Size0002.png" id="16_xpmn3"]
+[ext_resource type="Material" uid="uid://u5fnjte4ac5w" path="res://Resources/ObjectColors/orange.tres" id="18_33y7k"]
 
-[node name="Level4" type="Node2D" unique_id=1795732649]
+[sub_resource type="Resource" id="Resource_ecora"]
+script = ExtResource("11_3osng")
+volume = 1
+icon = ExtResource("10_i5g5g")
+metadata/_custom_type_script = "uid://dd25n2sul3wg4"
+
+[sub_resource type="Resource" id="Resource_eb4ip"]
+script = ExtResource("11_3osng")
+volume = 1
+icon = ExtResource("10_i5g5g")
+metadata/_custom_type_script = "uid://dd25n2sul3wg4"
+
+[sub_resource type="Resource" id="Resource_3osng"]
+script = ExtResource("11_3osng")
+icon = ExtResource("10_i5g5g")
+metadata/_custom_type_script = "uid://dd25n2sul3wg4"
+
+[sub_resource type="Resource" id="Resource_33y7k"]
+script = ExtResource("11_3osng")
+icon = ExtResource("10_i5g5g")
+metadata/_custom_type_script = "uid://dd25n2sul3wg4"
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_i5g5g"]
+size = Vector2(256, 32)
+
+[sub_resource type="Gradient" id="Gradient_3osng"]
+offsets = PackedFloat32Array(0, 0.5, 1)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0)
+metadata/_snap_enabled = true
+metadata/_snap_count = 20
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_eb4ip"]
+gradient = SubResource("Gradient_3osng")
+fill = 2
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.5, 0)
+metadata/_snap_enabled = true
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_ecora"]
+load_path = "res://.godot/imported/Size0001.png-0205a8f3342cc7f15b1bbfa243eb6a13.ctex"
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3osng"]
+size = Vector2(448, 32)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_ecora"]
+gradient = SubResource("Gradient_3osng")
+fill = 2
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.5, 0)
+metadata/_snap_enabled = true
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_eb4ip"]
+size = Vector2(96, 288)
+
+[sub_resource type="Gradient" id="Gradient_ecora"]
+offsets = PackedFloat32Array(0, 0.5, 1)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0)
+metadata/_snap_enabled = true
+metadata/_snap_count = 20
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_xpmn3"]
+gradient = SubResource("Gradient_ecora")
+fill = 2
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.5, 0)
+metadata/_snap_enabled = true
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_33y7k"]
+load_path = "res://.godot/imported/Size0001.png-0205a8f3342cc7f15b1bbfa243eb6a13.ctex"
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_33y7k"]
+
+[sub_resource type="Gradient" id="Gradient_n4vm5"]
+offsets = PackedFloat32Array(0, 0.5, 1)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0)
+metadata/_snap_enabled = true
+metadata/_snap_count = 20
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_khr6i"]
+gradient = SubResource("Gradient_n4vm5")
+fill = 2
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.5, 0.2)
+metadata/_snap_enabled = true
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mnmct"]
+size = Vector2(256, 64)
+
+[sub_resource type="Gradient" id="Gradient_6r07y"]
+offsets = PackedFloat32Array(0, 0.5, 1)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0)
+metadata/_snap_enabled = true
+metadata/_snap_count = 20
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_31yle"]
+gradient = SubResource("Gradient_6r07y")
+fill = 2
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.5, 0.1)
+metadata/_snap_enabled = true
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_dnyrp"]
+load_path = "res://.godot/imported/Size0001.png-0205a8f3342cc7f15b1bbfa243eb6a13.ctex"
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_061ob"]
+gradient = SubResource("Gradient_6r07y")
+fill = 2
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.5, 0.1)
+metadata/_snap_enabled = true
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_eb5oh"]
+load_path = "res://.godot/imported/Size0001.png-0205a8f3342cc7f15b1bbfa243eb6a13.ctex"
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_khr6i"]
+size = Vector2(256, 64)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_mnmct"]
+gradient = SubResource("Gradient_6r07y")
+fill = 2
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.5, 0.1)
+metadata/_snap_enabled = true
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_31yle"]
+load_path = "res://.godot/imported/Size0001.png-0205a8f3342cc7f15b1bbfa243eb6a13.ctex"
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_dnyrp"]
+gradient = SubResource("Gradient_6r07y")
+fill = 2
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.5, 0.1)
+metadata/_snap_enabled = true
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_061ob"]
+load_path = "res://.godot/imported/Size0001.png-0205a8f3342cc7f15b1bbfa243eb6a13.ctex"
+
+[node name="Level4" type="Node2D" unique_id=1739267660]
 
 [node name="SkyBox" parent="." unique_id=1652161055 instance=ExtResource("1_i1va2")]
+metadata/_edit_lock_ = true
 
-[node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=1050166943]
-material = ExtResource("2_h0uxt")
+[node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=255918362]
+material = ExtResource("2_keyqw")
 position = Vector2(0, -32)
-tile_map_data = PackedByteArray("AAD//wcAAQAAAAAAAQD//wgAAQAAAAAAAQAAAAgAAQAAAAAAAQABAAgAAQAAAAAAAQABAAcAAQAAAAAAAQAAAAcAAQAAAAAAAQACAAcAAQAAAAAAAQADAAcAAQAAAAAAAQADAAgAAQAAAAAAAQACAAgAAQAAAAAAAQA=")
+tile_map_data = PackedByteArray("AAAEAAcAAQAAAAAAAQAFAAgAAQAAAAAAAQAFAAcAAQAAAAAAAQAGAAcAAQAAAAAAAQAGAAgAAQAAAAAAAQADAAcAAQAAAAAAAQAEAAgAAQAAAAAAAQAHAAgAAQAAAAAAAQAHAAcAAQAAAAAAAQA=")
 tile_set = ExtResource("2_xq0e5")
 
 [node name="Borders" parent="." unique_id=999858988 instance=ExtResource("3_6grq2")]
@@ -25,17 +173,249 @@ tile_set = ExtResource("2_xq0e5")
 camera = NodePath("../../Player/PlayerCamera")
 
 [node name="Player" parent="." unique_id=404843843 instance=ExtResource("4_vwhew")]
-position = Vector2(128, 832)
+position = Vector2(608, 832)
 
-[node name="FlashLight" parent="Player" index="2" unique_id=858341556]
-enabled = true
+[node name="PlayerCamera" parent="Player" index="0" unique_id=744180924]
+limit_top = 0
 
 [node name="Goal" parent="." unique_id=412398523 instance=ExtResource("5_t74h0")]
-position = Vector2(800, 352)
+position = Vector2(960, 288)
+level = ExtResource("7_xpmn3")
 
 [node name="DeathBox" parent="." unique_id=1943901647 instance=ExtResource("6_i4hbv")]
 
 [node name="BoxInterface" parent="." unique_id=2091224111 instance=ExtResource("7_i4hbv")]
+
+[node name="Item" parent="BoxInterface/PanelContainer/VBoxContainer/PanelContainer/InsideBox" parent_id_path=PackedInt32Array(2091224111, 527385168) index="0" unique_id=540643436 node_paths=PackedStringArray("object") instance=ExtResource("8_h0uxt")]
+material = ExtResource("15_ecora")
+layout_mode = 2
+icon = ExtResource("10_i5g5g")
+item = SubResource("Resource_ecora")
+id = 3
+object = NodePath("../../../../../../3")
+
+[node name="Item2" parent="BoxInterface/PanelContainer/VBoxContainer/PanelContainer/InsideBox" parent_id_path=PackedInt32Array(2091224111, 527385168) index="1" unique_id=2085958044 instance=ExtResource("8_h0uxt")]
+layout_mode = 2
+
+[node name="Item3" parent="BoxInterface/PanelContainer/VBoxContainer/PanelContainer/InsideBox" parent_id_path=PackedInt32Array(2091224111, 527385168) index="2" unique_id=39175107 instance=ExtResource("8_h0uxt")]
+layout_mode = 2
+
+[node name="Item4" parent="BoxInterface/PanelContainer/VBoxContainer/PanelContainer/InsideBox" parent_id_path=PackedInt32Array(2091224111, 527385168) index="3" unique_id=1990548734 instance=ExtResource("8_h0uxt")]
+layout_mode = 2
+
+[node name="Item1" parent="BoxInterface/PanelContainer/VBoxContainer/OutsideBox" parent_id_path=PackedInt32Array(2091224111, 1854341907) index="0" unique_id=1726545559 node_paths=PackedStringArray("object")]
+material = ExtResource("10_3asqb")
+icon = ExtResource("10_i5g5g")
+item = SubResource("Resource_eb4ip")
+id = 1
+object = NodePath("../../../../../1")
+
+[node name="Item2" parent="BoxInterface/PanelContainer/VBoxContainer/OutsideBox" parent_id_path=PackedInt32Array(2091224111, 1854341907) index="1" unique_id=1842494652 node_paths=PackedStringArray("object")]
+material = ExtResource("14_3osng")
+icon = ExtResource("10_i5g5g")
+item = SubResource("Resource_3osng")
+id = 2
+object = NodePath("../../../../../2")
+
+[node name="Item3" parent="BoxInterface/PanelContainer/VBoxContainer/OutsideBox" parent_id_path=PackedInt32Array(2091224111, 1854341907) index="2" unique_id=85214942 node_paths=PackedStringArray("object")]
+material = ExtResource("18_33y7k")
+icon = ExtResource("10_i5g5g")
+item = SubResource("Resource_33y7k")
+id = 4
+object = NodePath("../../../../../4")
+
+[node name="1" type="StaticBody2D" parent="." unique_id=1772193205 node_paths=PackedStringArray("box", "collision_2d")]
+position = Vector2(640, 736)
+script = ExtResource("10_slbhm")
+box = NodePath("../BoxInterface/PanelContainer/VBoxContainer/PanelContainer/InsideBox")
+collision_2d = [NodePath("Collision0"), NodePath("Collision1")]
+
+[node name="Collision0" type="CollisionShape2D" parent="1" unique_id=316082113]
+position = Vector2(0, -16)
+shape = SubResource("RectangleShape2D_i5g5g")
+metadata/_edit_lock_ = true
+
+[node name="PointLight2D" type="PointLight2D" parent="1" unique_id=497002299]
+position = Vector2(3.0517578e-05, -16)
+scale = Vector2(4.9999995, 1.4999999)
+energy = 2.0
+blend_mode = 2
+texture = SubResource("GradientTexture2D_eb4ip")
+metadata/_edit_lock_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="1" unique_id=1380025235]
+material = ExtResource("10_3asqb")
+position = Vector2(0, -16)
+scale = Vector2(0.667, 0.125)
+texture = SubResource("CompressedTexture2D_ecora")
+region_enabled = true
+region_rect = Rect2(0, 128, 384, 256)
+metadata/_edit_lock_ = true
+
+[node name="Collision1" type="CollisionShape2D" parent="1" unique_id=1976430307]
+position = Vector2(3.0517578e-05, -176)
+shape = SubResource("RectangleShape2D_3osng")
+
+[node name="PointLight2D2" type="PointLight2D" parent="1" unique_id=410801504]
+position = Vector2(0, -176)
+scale = Vector2(8.000001, 1.4999999)
+energy = 2.0
+blend_mode = 2
+texture = SubResource("GradientTexture2D_ecora")
+
+[node name="Sprite2D2" type="Sprite2D" parent="1" unique_id=283353169]
+material = ExtResource("10_3asqb")
+position = Vector2(-112, -176)
+scale = Vector2(0.58333325, 0.125)
+texture = SubResource("CompressedTexture2D_ecora")
+region_enabled = true
+region_rect = Rect2(0, 128, 384, 256)
+
+[node name="Sprite2D3" type="Sprite2D" parent="1" unique_id=1774074987]
+material = ExtResource("10_3asqb")
+position = Vector2(112, -176)
+scale = Vector2(0.5833334, 0.125)
+texture = SubResource("CompressedTexture2D_ecora")
+region_enabled = true
+region_rect = Rect2(0, 128, 384, 256)
+
+[node name="2" type="StaticBody2D" parent="." unique_id=1855147173 node_paths=PackedStringArray("box", "collision_2d")]
+position = Vector2(896, 736)
+script = ExtResource("10_slbhm")
+id = 2
+box = NodePath("../BoxInterface/PanelContainer/VBoxContainer/PanelContainer/InsideBox")
+collision_2d = [NodePath("Collision0")]
+
+[node name="Collision0" type="CollisionShape2D" parent="2" unique_id=699047990]
+position = Vector2(-16, -16)
+shape = SubResource("RectangleShape2D_eb4ip")
+
+[node name="PointLight2D" type="PointLight2D" parent="2" unique_id=861797588]
+position = Vector2(-15.999977, -15.999989)
+scale = Vector2(2.5, 5.4999995)
+energy = 2.0
+blend_mode = 2
+texture = SubResource("GradientTexture2D_xpmn3")
+
+[node name="Sprite2D" type="Sprite2D" parent="2" unique_id=177437547]
+material = ExtResource("14_3osng")
+position = Vector2(-16.878082, -16)
+rotation = 1.5707964
+scale = Vector2(0.75457275, 0.37500006)
+texture = SubResource("CompressedTexture2D_33y7k")
+region_enabled = true
+region_rect = Rect2(0, 128, 384, 256)
+
+[node name="3" type="RigidBody2D" parent="." unique_id=295265387 node_paths=PackedStringArray("box", "collision_2d")]
+position = Vector2(1024, 832)
+collision_mask = 7
+physics_material_override = SubResource("PhysicsMaterial_33y7k")
+gravity_scale = 2.0
+center_of_mass_mode = 1
+center_of_mass = Vector2(32, 32)
+lock_rotation = true
+script = ExtResource("10_slbhm")
+id = 3
+box = NodePath("../BoxInterface/PanelContainer/VBoxContainer/PanelContainer/InsideBox")
+collision_2d = [NodePath("CollisionPolygon2D")]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="3" unique_id=1643091371]
+polygon = PackedVector2Array(-32, -32, 32, -32, 32, 24, 16, 30, 0, 32, -16, 30, -32, 24)
+metadata/_edit_lock_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="3" unique_id=417638869]
+material = ExtResource("15_ecora")
+position = Vector2(-16, -16)
+scale = Vector2(0.24999996, 0.25000006)
+texture = ExtResource("16_xpmn3")
+metadata/_edit_lock_ = true
+
+[node name="PointLight2D" type="PointLight2D" parent="3" unique_id=1107831647]
+position = Vector2(1.5258789e-05, 2.670288e-05)
+scale = Vector2(2.000001, 1.9999999)
+energy = 2.0
+blend_mode = 2
+texture = SubResource("GradientTexture2D_khr6i")
+metadata/_edit_lock_ = true
+
+[node name="4" type="StaticBody2D" parent="." unique_id=382092587 node_paths=PackedStringArray("box", "collision_2d")]
+position = Vector2(640, 512)
+script = ExtResource("10_slbhm")
+id = 4
+box = NodePath("../BoxInterface/PanelContainer/VBoxContainer/PanelContainer/InsideBox")
+collision_2d = [NodePath("Collision0"), NodePath("Collision1")]
+
+[node name="Collision0" type="CollisionShape2D" parent="4" unique_id=1245540961]
+shape = SubResource("RectangleShape2D_mnmct")
+
+[node name="PointLight2D" type="PointLight2D" parent="4" unique_id=603335543]
+position = Vector2(-64.000046, 2.670288e-05)
+scale = Vector2(3, 1.9999999)
+energy = 2.0
+blend_mode = 2
+texture = SubResource("GradientTexture2D_31yle")
+
+[node name="Sprite2D" type="Sprite2D" parent="4" unique_id=1790287452]
+material = ExtResource("18_33y7k")
+position = Vector2(-63.999992, 7.6293945e-06)
+scale = Vector2(0.33333334, 0.24999994)
+texture = SubResource("CompressedTexture2D_dnyrp")
+region_enabled = true
+region_rect = Rect2(0, 128, 384, 256)
+
+[node name="PointLight2D2" type="PointLight2D" parent="4" unique_id=1627879877]
+position = Vector2(63.99991, 0)
+scale = Vector2(3, 1.9999999)
+energy = 2.0
+blend_mode = 2
+texture = SubResource("GradientTexture2D_061ob")
+
+[node name="Sprite2D2" type="Sprite2D" parent="4" unique_id=1822441987]
+material = ExtResource("18_33y7k")
+position = Vector2(64, 0)
+scale = Vector2(0.33333334, 0.24999994)
+texture = SubResource("CompressedTexture2D_eb5oh")
+region_enabled = true
+region_rect = Rect2(0, 128, 384, 256)
+
+[node name="Collision1" type="CollisionShape2D" parent="4" unique_id=1776788604]
+position = Vector2(224, -128)
+rotation = 1.5707964
+shape = SubResource("RectangleShape2D_khr6i")
+
+[node name="PointLight2D3" type="PointLight2D" parent="4" unique_id=1755171311]
+position = Vector2(224, -191.99994)
+rotation = 1.5707964
+scale = Vector2(3, 1.9999999)
+energy = 2.0
+blend_mode = 2
+texture = SubResource("GradientTexture2D_mnmct")
+
+[node name="Sprite2D3" type="Sprite2D" parent="4" unique_id=1484050811]
+material = ExtResource("18_33y7k")
+position = Vector2(224, -192)
+rotation = 1.5707964
+scale = Vector2(0.33333334, 0.24999994)
+texture = SubResource("CompressedTexture2D_31yle")
+region_enabled = true
+region_rect = Rect2(0, 128, 384, 256)
+
+[node name="PointLight2D4" type="PointLight2D" parent="4" unique_id=1214499615]
+position = Vector2(224, -64.00006)
+rotation = 1.5707964
+scale = Vector2(3, 1.9999999)
+energy = 2.0
+blend_mode = 2
+texture = SubResource("GradientTexture2D_dnyrp")
+
+[node name="Sprite2D4" type="Sprite2D" parent="4" unique_id=1786672942]
+material = ExtResource("18_33y7k")
+position = Vector2(224, -63.999756)
+rotation = 1.5707964
+scale = Vector2(0.33333334, 0.24999994)
+texture = SubResource("CompressedTexture2D_061ob")
+region_enabled = true
+region_rect = Rect2(0, 128, 384, 256)
 
 [editable path="Borders"]
 [editable path="Player"]

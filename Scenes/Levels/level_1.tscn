@@ -31,14 +31,14 @@ metadata/_custom_type_script = "uid://dd25n2sul3wg4"
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_chwpn"]
 size = Vector2(128, 256)
 
-[sub_resource type="Gradient" id="Gradient_6r07y"]
+[sub_resource type="Gradient" id="Gradient_tjl6l"]
 offsets = PackedFloat32Array(0, 0.5, 1)
 colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0)
 metadata/_snap_enabled = true
 metadata/_snap_count = 20
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_oovug"]
-gradient = SubResource("Gradient_6r07y")
+gradient = SubResource("Gradient_tjl6l")
 fill = 2
 fill_from = Vector2(0.5, 0.5)
 fill_to = Vector2(0.5, 0)
@@ -128,7 +128,6 @@ collision_2d = [NodePath("Collision0")]
 
 [node name="Collision0" type="CollisionShape2D" parent="1" unique_id=1127563313]
 shape = SubResource("RectangleShape2D_chwpn")
-metadata/_edit_lock_ = true
 
 [node name="PointLight2D" type="PointLight2D" parent="1" unique_id=332311861]
 position = Vector2(1.1444092e-05, 1.335144e-05)
@@ -145,7 +144,6 @@ scale = Vector2(0.667, 0.5)
 texture = SubResource("CompressedTexture2D_oovug")
 region_enabled = true
 region_rect = Rect2(0, 128, 384, 256)
-metadata/_edit_lock_ = true
 
 [node name="2" type="StaticBody2D" parent="." unique_id=1869924856 node_paths=PackedStringArray("box", "collision_2d")]
 position = Vector2(896, 800)

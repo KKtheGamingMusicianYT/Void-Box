@@ -45,7 +45,7 @@ fill_to = Vector2(0.5, 0)
 metadata/_snap_enabled = true
 
 [sub_resource type="Gradient" id="Gradient_lyrkg"]
-offsets = PackedFloat32Array(0, 0.65, 0.95, 1)
+offsets = PackedFloat32Array(0, 0.55, 0.95, 1)
 colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 0)
 metadata/_snap_enabled = true
 metadata/_snap_count = 20
@@ -182,10 +182,10 @@ texture = SubResource("GradientTexture2D_lyrkg")
 metadata/_edit_lock_ = true
 
 [node name="FlashLight" type="PointLight2D" parent="." unique_id=858341556]
-position = Vector2(1.4305115e-06, -15.999996)
+position = Vector2(1.4305115e-06, -7.999999)
 scale = Vector2(2.2499998, 2.2499998)
 enabled = false
-energy = 16.0
+energy = 500.0
 blend_mode = 2
 texture = SubResource("GradientTexture2D_c43xd")
 
