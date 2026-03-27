@@ -6,13 +6,17 @@ class_name Item
 @onready var point_light_2d: PointLight2D = $PointLight2D
 var parent : BoxInterfaceGridContainer
 var hidden_icon : Texture2D
+var mouse_down : bool
 
 func _ready() -> void:
+	mouse_down = Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT)
 	icon = item.icon
 	expand_icon = true
 	hidden_icon = icon
 
 func _process(_delta: float) -> void:
+	if not Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
+		mouse_down = false
 	if not Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
 		self_modulate.a = 100
 		icon = hidden_icon
@@ -20,7 +24,7 @@ func _process(_delta: float) -> void:
 		point_light_2d.visible = false
 	else:
 		point_light_2d.visible = true
-	
+
 func recieve_parent(reference: BoxInterfaceGridContainer) -> void:
 	parent = reference
 
@@ -33,6 +37,8 @@ func _get_drag_data(_at_position: Vector2) -> Variant:
 	return self
 
 func _can_drop_data(_at_position: Vector2, _data: Variant) -> bool:
+	if mouse_down == true:
+		return false
 	return true
 
 func _drop_data(_at_position: Vector2, Data: Variant) -> void:

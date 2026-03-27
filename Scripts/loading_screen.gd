@@ -1,15 +1,21 @@
 extends CanvasLayer
 
-signal loading_screen_has_full_coverage
+signal loading_screen_ready
 
-@onready var animation_player: AnimationPlayer = $AnimationPlayer
-@onready var progress_bar: ProgressBar = $Panel/ProgressBar
+@export var animation_player: AnimationPlayer
+var extra_wait_time : float = 1.12
 
-func _update_progress_bar(new_value : float) -> void:
-	progress_bar.set_value_no_signal(new_value * 100)
+func _ready() -> void:
+	await animation_player.animation_finished
+	loading_screen_ready.emit()
 	
-func _start_outro_animation() -> void:
-	await Signal(animation_player, "animation_finished")
-	animation_player.play("end_load")
-	await Signal(animation_player, "animation_finished")
-	self.queue_free()
+func _on_progress_changed(_new_value : float) -> void:
+	pass
+	
+func _on_load_finished() -> void:
+	
+	await get_tree().create_timer(2).timeout
+	
+	animation_player.play_backwards("transition")
+	await animation_player.animation_finished
+	queue_free()

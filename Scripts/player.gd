@@ -47,12 +47,17 @@ enum { # Available states for the Player for readability. Index used by the poss
 }
 
 func _ready() -> void:
+	DEADED_GPU_PARTICLES.emitting = true
+	set_physics_process(false)
+	
 	setup_states()
 	coyot_box_pos = COYOTE_BOX.position
 	floor_wall_censor_pos = FLOOR_WALL_CENSOR.position
 	wall_censor_pos = WALL_CENSOR.position
 	
+	await DEADED_GPU_PARTICLES.finished
 	DEADED_GPU_PARTICLES.emitting = false
+	set_physics_process(true)
 	
 # The conditions for Players to use states
 func _physics_process(_delta: float) -> void:
@@ -161,7 +166,6 @@ func _match_states() -> void:
 			CHARACTER_ANIMATED_SPRITE.stop()
 			CHARACTER_ANIMATED_SPRITE.visible = false
 			DEADED_GPU_PARTICLES.emitting = true
-			change_state(IDLE)
 
 func _check_jumping() -> void:
 	jumping = properties.JUMPING_FRAMES
