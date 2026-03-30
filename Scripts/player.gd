@@ -2,7 +2,7 @@ extends CharacterBody
 class_name Player
 
 @export var BUFFER_JUMP_TIMER : Timer
-@export var SFX_PLAYER : AudioStreamPlayer
+@export var SFX_PLAYER : PackedScene
 @export var CAN_USE_GOD_MODE : bool = false
 @export_custom(PROPERTY_HINT_NONE, "suffix: kg") var mass : float = 1
 @export_group("Physics HitBoxes")
@@ -14,9 +14,7 @@ var collision_shape : CollisionShape2D
 @export var COYOTE_BOX : CollisionPolygon2D
 @export var GAP_BOX : CollisionShape2D
 @export var GAP_CENSOR : RayCast2D
-@export var WALL_CENSOR : ShapeCast2D
 @export var FLOOR_WALL_CENSOR : ShapeCast2D
-
 
 @export_subgroup("Edge Clipping")
 @export var CLIP_LEFT : RayCast2D
@@ -35,7 +33,6 @@ var collision_shape : CollisionShape2D
 
 var coyot_box_pos : Vector2
 var floor_wall_censor_pos : Vector2
-var wall_censor_pos : Vector2
 
 var level : PackedScene
 
@@ -56,7 +53,6 @@ func _ready() -> void:
 	setup_states()
 	coyot_box_pos = COYOTE_BOX.position
 	floor_wall_censor_pos = FLOOR_WALL_CENSOR.position
-	wall_censor_pos = WALL_CENSOR.position
 	
 	await DEADED_GPU_PARTICLES.finished
 	DEADED_GPU_PARTICLES.emitting = false
@@ -86,10 +82,10 @@ func _handle_player_input() -> void:
 func _update_box_dir() -> void:
 	COYOTE_BOX.position.x = coyot_box_pos.x * direction
 	FLOOR_WALL_CENSOR.position.x = floor_wall_censor_pos.x * direction
-	WALL_CENSOR.position.x = wall_censor_pos.x + (24 * int(bool(direction - 1)) * int(bool(direction)))
 
 func _match_states() -> void:
-	_sd()
+	if not current_state == possible_states[GET_DEADED]:
+		_sd()
 	match possible_states.find_key(current_state):
 		IDLE:
 			if direction:
@@ -115,8 +111,8 @@ func _match_states() -> void:
 			#_check_gap_running()
 			if is_on_floor():
 				COYOTE_BOX.disabled = true
-			#if WALL_CENSOR.is_colliding() and not GAP_CENSOR.is_colliding():
-			#	direction = 0
+			if not GAP_CENSOR.is_colliding():
+				direction = 0
 			_animate("Walk")
 		RUN:
 			_adjust_max_velocity()
@@ -129,7 +125,7 @@ func _match_states() -> void:
 			#_check_gap_running()
 			if is_on_floor():
 				COYOTE_BOX.disabled = true
-			if WALL_CENSOR.is_colliding() and not GAP_CENSOR.is_colliding():
+			if not GAP_CENSOR.is_colliding():
 				direction = 0
 			_animate("Walk")
 		JUMP:
@@ -177,15 +173,18 @@ func _check_jumping() -> void:
 	jumping = properties.JUMPING_FRAMES
 	if Input.is_action_pressed("Jump") and BUFFER_JUMP_TIMER.time_left != 0: # jump if allowed
 		change_state(JUMP)
-		SFX_PLAYER.play(0.0)
+		var new_SFX_PLAYER = SFX_PLAYER.instantiate()
+		add_child(new_SFX_PLAYER)
+		new_SFX_PLAYER.stop()
+		new_SFX_PLAYER.play(0.0)
 		await get_tree().create_timer(0.5).timeout
-		SFX_PLAYER.stop()
-		
+		new_SFX_PLAYER.stop()
+		new_SFX_PLAYER.queue_free()
 
 func _check_just_left_floor() -> void:
 	if not is_on_floor():
 		change_state(FALL)
-		_check_coyote_jumping()
+		#_check_coyote_jumping()
 
 func _check_coyote_jumping() -> void:
 	if direction:
@@ -205,8 +204,11 @@ func _check_gap_running() -> void:
 func _sd() -> void:
 	if Input.is_action_just_released("Get_Deaded"):
 		change_state(GET_DEADED)
-		SFX_PLAYER.play(0.81)
+		var new_SFX_PLAYER = SFX_PLAYER.instantiate()
+		add_child(new_SFX_PLAYER)
+		new_SFX_PLAYER.play(0.81)
 		SwitchScene.switch_to(level.resource_path, 3)
+
 func _adjust_max_velocity() -> void:
 	# The JUMP and FALL states use VELOCITY.x to determine sideways movement, 
 	# so set the VELOCITY.x to the RUNNING/WALKING_SPEED when needed to carry momentum
@@ -250,6 +252,7 @@ func _push_rigid_bodies() -> void:
 	for collision_number in get_slide_collision_count():
 		var collision = get_slide_collision(collision_number)
 		if collision.get_collider() is RigidBody2D:
+			direction = Input.get_axis("Move_Left", "Move_Right")
 			var collider : RigidBody2D = collision.get_collider()
 			collider.apply_central_force(
 				Vector2(collision.get_normal().x * -1 * mass * properties.VELOCITY.x, 0)

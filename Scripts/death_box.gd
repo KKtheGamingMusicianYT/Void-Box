@@ -8,5 +8,7 @@ func _ready() -> void:
 
 func _on_body_entered(body: Player) -> void:
 	body.change_state(body.GET_DEADED)
-	body.SFX_PLAYER.play(0.81)
-	SwitchScene.switch_to(level.resource_path, 3)
+	var SFX_PLAYER : AudioStreamPlayer= body.SFX_PLAYER.instantiate()
+	body.add_child(SFX_PLAYER)
+	SFX_PLAYER.play(0.81)
+	SwitchScene.switch_to(level.resource_path, 1)

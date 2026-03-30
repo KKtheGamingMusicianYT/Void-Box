@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://cwgtx1qh6ous5"]
+
+[ext_resource type="AudioStream" uid="uid://st8n4o38x5rq" path="res://Assets/VoidBoxSFX.wav" id="1_g0cor"]
+
+[node name="SFXPlayer" type="AudioStreamPlayer" unique_id=132855008]
+stream = ExtResource("1_g0cor")
+max_polyphony = 1000

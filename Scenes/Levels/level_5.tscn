@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://b55edq5uh3pp3" path="res://Scenes/borders.tscn" id="4_evokg"]
 [ext_resource type="PackedScene" uid="uid://b38x0l1gd3w7w" path="res://Scenes/Player.tscn" id="5_3koi7"]
 [ext_resource type="PackedScene" uid="uid://dhyync7cvqavl" path="res://Scenes/goal.tscn" id="6_20kd1"]
+[ext_resource type="PackedScene" uid="uid://be5f1gwsckkfk" path="res://Scenes/Levels/level_6.tscn" id="7_27vqw"]
 [ext_resource type="PackedScene" uid="uid://d2hp865b8yt3u" path="res://Scenes/death_box.tscn" id="7_gqyih"]
 [ext_resource type="PackedScene" uid="uid://coefif7s7p7tm" path="res://Scenes/box_interface.tscn" id="8_srugb"]
 [ext_resource type="PackedScene" uid="uid://bx7japdg7ed76" path="res://Scenes/item.tscn" id="9_gqyih"]
@@ -13,13 +14,67 @@
 [ext_resource type="Texture2D" uid="uid://clg8samn7gqkr" path="res://Assets/Sprites/Block/Size0000.png" id="11_vdq4f"]
 [ext_resource type="Script" uid="uid://dd25n2sul3wg4" path="res://Scripts/ResourceScripts/item_data.gd" id="12_633d5"]
 [ext_resource type="Script" uid="uid://l47uf8luj8s6" path="res://Scripts/node_with_id.gd" id="13_rw7sn"]
+[ext_resource type="Material" uid="uid://c5m2ipywajj8i" path="res://Resources/ObjectColors/dandilion.tres" id="13_srugb"]
 [ext_resource type="Texture2D" uid="uid://bx1hsboq4euo8" path="res://Assets/Sprites/Block/Size0002.png" id="14_27vqw"]
+[ext_resource type="Material" uid="uid://hs6fydc27bmt" path="res://Resources/ObjectColors/kk_pink.tres" id="14_633d5"]
+[ext_resource type="Material" uid="uid://c55et7jrl16r1" path="res://Resources/ObjectColors/brown.tres" id="15_rw7sn"]
+[ext_resource type="Texture2D" uid="uid://bn6l2vtf6ruv0" path="res://Assets/Sprites/Block/Size0001.png" id="16_vdq4f"]
 
 [sub_resource type="Resource" id="Resource_jd0ia"]
 script = ExtResource("12_633d5")
 volume = 1
 icon = ExtResource("11_vdq4f")
 metadata/_custom_type_script = "uid://dd25n2sul3wg4"
+
+[sub_resource type="Resource" id="Resource_vdq4f"]
+script = ExtResource("12_633d5")
+volume = 1
+icon = ExtResource("11_vdq4f")
+metadata/_custom_type_script = "uid://dd25n2sul3wg4"
+
+[sub_resource type="Resource" id="Resource_rw7sn"]
+script = ExtResource("12_633d5")
+icon = ExtResource("11_vdq4f")
+metadata/_custom_type_script = "uid://dd25n2sul3wg4"
+
+[sub_resource type="Resource" id="Resource_27vqw"]
+script = ExtResource("12_633d5")
+volume = 1
+icon = ExtResource("11_vdq4f")
+metadata/_custom_type_script = "uid://dd25n2sul3wg4"
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_633d5"]
+size = Vector2(64, 256)
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_rw7sn"]
+load_path = "res://.godot/imported/Size0001.png-0205a8f3342cc7f15b1bbfa243eb6a13.ctex"
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_27vqw"]
+size = Vector2(224, 64)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rw7sn"]
+size = Vector2(96, 160)
+
+[sub_resource type="Animation" id="Animation_rw7sn"]
+resource_name = "moving_plat_horz"
+length = 5.0
+loop_mode = 1
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0, 0),
+"points": PackedFloat32Array(1331.0426, 0, 0, 0, 0, 1211.0426, -1, 0, 1, 0, 1451.0426, -1, 0, 1, 0, 1331.0426, 0, 0, 0, 0),
+"times": PackedFloat32Array(0, 1.25, 3.75, 5.0333333)
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_27vqw"]
+_data = {
+&"moving_plat_horz": SubResource("Animation_rw7sn")
+}
 
 [node name="Level5" type="Node2D" unique_id=1795732649]
 
@@ -29,11 +84,14 @@ metadata/_edit_lock_ = true
 [node name="CanvasModulate" parent="SkyBox" index="0" unique_id=778874230]
 color = Color(0.0038333319, 0, 0.01, 1)
 
+[node name="Polygon2D" parent="SkyBox/Background" parent_id_path=PackedInt32Array(1652161055, 567555795) index="0" unique_id=1824874779]
+metadata/_edit_lock_ = true
+
 [node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=1050166943]
 top_level = true
 material = ExtResource("2_doouk")
 position = Vector2(0, -32)
-tile_map_data = PackedByteArray("AAD//wcAAQAAAAAAAQABAAcAAQAAAAAAAQAAAAcAAQAAAAAAAQACAAcAAQAAAAAAAQD//wUAAQAAAAAAAQAAAAUAAQAAAAAAAQABAAUAAQAAAAAAAQAEAAcAAQAAAAAAAQADAAUAAQAAAAAAAQADAAcAAQAAAAAAAQAFAAcAAQAAAAAAAQAGAAYAAQAAAAAAAQAFAAUAAQAAAAAAAQA=")
+tile_map_data = PackedByteArray("AAD//wcAAQAAAAAAAQABAAcAAQAAAAAAAQAAAAcAAQAAAAAAAQACAAcAAQAAAAAAAQADAAcAAQAAAAAAAQABAAUAAQAAAAAAAQADAAgAAQAAAAAAAQACAAIAAQAAAAAAAQADAAIAAQAAAAAAAQABAAEAAQAAAAAAAQACAAEAAQAAAAAAAQADAAEAAQAAAAAAAQAGAAIAAQAAAAAAAQAGAAMAAQAAAAAAAQAGAAQAAQAAAAAAAQAGAAUAAQAAAAAAAQAGAAYAAQAAAAAAAQAGAAcAAQAAAAAAAQAGAAgAAQAAAAAAAQAHAAIAAQAAAAAAAQAIAAIAAQAAAAAAAQAJAAIAAQAAAAAAAQALAAIAAQAAAAAAAQAKAAMAAQAAAAAAAQAKAAQAAQAAAAAAAQAJAAQAAQAAAAAAAQAHAAYAAQAAAAAAAQAIAAYAAQAAAAAAAQAJAAYAAQAAAAAAAQAKAAYAAQAAAAAAAQALAAUAAQAAAAAAAQA=")
 tile_set = ExtResource("3_0fyhm")
 
 [node name="Borders" parent="." unique_id=999858988 instance=ExtResource("4_evokg")]
@@ -42,17 +100,18 @@ tile_set = ExtResource("3_0fyhm")
 camera = NodePath("../../Player/PlayerCamera")
 
 [node name="Player" parent="." unique_id=404843843 instance=ExtResource("5_3koi7")]
-position = Vector2(288, 832)
+position = Vector2(192, 832)
 
 [node name="PlayerCamera" parent="Player" index="0" unique_id=744180924]
-limit_top = -1080
-limit_right = 3840
+limit_top = -250
+limit_right = 2100
 
 [node name="FlashLight" parent="Player" index="2" unique_id=858341556]
 enabled = true
 
 [node name="Goal" parent="." unique_id=412398523 instance=ExtResource("6_20kd1")]
-position = Vector2(2656, 64)
+position = Vector2(1088, 992)
+level = ExtResource("7_27vqw")
 
 [node name="DeathBox" parent="." unique_id=1943901647 instance=ExtResource("7_gqyih")]
 
@@ -65,21 +124,157 @@ icon = ExtResource("11_vdq4f")
 item = SubResource("Resource_jd0ia")
 id = 1
 
+[node name="Item2" parent="BoxInterface/PanelContainer/VBoxContainer/PanelContainer/InsideBox" parent_id_path=PackedInt32Array(2091224111, 527385168) index="1" unique_id=676777696 instance=ExtResource("9_gqyih")]
+material = ExtResource("13_srugb")
+layout_mode = 2
+icon = ExtResource("11_vdq4f")
+item = SubResource("Resource_vdq4f")
+id = 2
+
+[node name="Item3" parent="BoxInterface/PanelContainer/VBoxContainer/PanelContainer/InsideBox" parent_id_path=PackedInt32Array(2091224111, 527385168) index="2" unique_id=1166341035 node_paths=PackedStringArray("object") instance=ExtResource("9_gqyih")]
+material = ExtResource("14_633d5")
+layout_mode = 2
+icon = ExtResource("11_vdq4f")
+item = SubResource("Resource_rw7sn")
+id = 3
+object = NodePath("../../../../../../3")
+
+[node name="Item4" parent="BoxInterface/PanelContainer/VBoxContainer/PanelContainer/InsideBox" parent_id_path=PackedInt32Array(2091224111, 527385168) index="3" unique_id=814991947 instance=ExtResource("9_gqyih")]
+layout_mode = 2
+
+[node name="Item1" parent="BoxInterface/PanelContainer/VBoxContainer/OutsideBox" parent_id_path=PackedInt32Array(2091224111, 1854341907) index="0" unique_id=1726545559 node_paths=PackedStringArray("object")]
+material = ExtResource("15_rw7sn")
+icon = ExtResource("11_vdq4f")
+item = SubResource("Resource_27vqw")
+id = 4
+object = NodePath("../../../../../4")
+
 [node name="1" type="RigidBody2D" parent="." unique_id=836210125 node_paths=PackedStringArray("box", "collision_2d")]
 position = Vector2(384, 800)
-mass = 3.0
+mass = 2.0
+gravity_scale = 2.0
 lock_rotation = true
 script = ExtResource("13_rw7sn")
 box = NodePath("../BoxInterface/PanelContainer/VBoxContainer/PanelContainer/InsideBox")
 collision_2d = [NodePath("Collision0")]
 
 [node name="Collision0" type="CollisionPolygon2D" parent="1" unique_id=663083049]
-polygon = PackedVector2Array(-64, -64, 64, -64, 64, 32, 0, 64, -64, 32)
+polygon = PackedVector2Array(-64, -64, 64, -64, 64, 48, 0, 64, -64, 48)
 
 [node name="Sprite2D" type="Sprite2D" parent="1" unique_id=635859865]
 material = ExtResource("10_srugb")
 position = Vector2(0, 6.67572e-06)
 scale = Vector2(0.5, 0.4999999)
+texture = ExtResource("14_27vqw")
+region_enabled = true
+region_rect = Rect2(128, 128, 256, 256)
+
+[node name="2" type="StaticBody2D" parent="." unique_id=1799162739 node_paths=PackedStringArray("box", "collision_2d")]
+position = Vector2(384, 512)
+script = ExtResource("13_rw7sn")
+id = 2
+box = NodePath("../BoxInterface/PanelContainer/VBoxContainer/PanelContainer/InsideBox")
+collision_2d = [NodePath("Collision0"), NodePath("Collision1")]
+
+[node name="Collision0" type="CollisionShape2D" parent="2" unique_id=1484319737]
+position = Vector2(0, -32)
+shape = SubResource("RectangleShape2D_633d5")
+
+[node name="Sprite2D" type="Sprite2D" parent="2" unique_id=1590952306]
+material = ExtResource("13_srugb")
+position = Vector2(0, 32)
+rotation = 1.5707964
+scale = Vector2(0.33333343, 0.24999988)
+texture = ExtResource("16_vdq4f")
+region_enabled = true
+region_rect = Rect2(0, 128, 384, 256)
+
+[node name="Sprite2D2" type="Sprite2D" parent="2" unique_id=770515376]
+material = ExtResource("13_srugb")
+position = Vector2(0, -96.00012)
+rotation = 1.5707964
+scale = Vector2(0.33333343, 0.24999988)
+texture = SubResource("CompressedTexture2D_rw7sn")
+region_enabled = true
+region_rect = Rect2(0, 128, 384, 256)
+
+[node name="Collision1" type="CollisionShape2D" parent="2" unique_id=999786246]
+position = Vector2(272, 32)
+shape = SubResource("RectangleShape2D_27vqw")
+
+[node name="Sprite2D3" type="Sprite2D" parent="2" unique_id=751957691]
+material = ExtResource("13_srugb")
+position = Vector2(336, 32)
+scale = Vector2(0.24999997, 0.24999988)
+texture = ExtResource("16_vdq4f")
+region_enabled = true
+region_rect = Rect2(0, 128, 384, 256)
+
+[node name="Sprite2D4" type="Sprite2D" parent="2" unique_id=700011324]
+material = ExtResource("13_srugb")
+position = Vector2(224, 32)
+scale = Vector2(0.33333343, 0.24999988)
+texture = SubResource("CompressedTexture2D_rw7sn")
+region_enabled = true
+region_rect = Rect2(0, 128, 384, 256)
+
+[node name="3" type="RigidBody2D" parent="." unique_id=2116606830 node_paths=PackedStringArray("box", "collision_2d")]
+position = Vector2(704, 416)
+mass = 2.0
+gravity_scale = 2.0
+lock_rotation = true
+script = ExtResource("13_rw7sn")
+id = 3
+box = NodePath("../BoxInterface/PanelContainer/VBoxContainer/PanelContainer/InsideBox")
+collision_2d = [NodePath("Collision0")]
+
+[node name="Collision0" type="CollisionShape2D" parent="3" unique_id=1252733627]
+shape = SubResource("RectangleShape2D_rw7sn")
+
+[node name="Sprite2D" type="Sprite2D" parent="3" unique_id=2118084200]
+material = ExtResource("14_633d5")
+position = Vector2(-2.8610226e-05, 0)
+rotation = 1.5707964
+scale = Vector2(0.4166666, 0.3749999)
+texture = ExtResource("16_vdq4f")
+region_enabled = true
+region_rect = Rect2(0, 128, 384, 256)
+
+[node name="4AnimationPlayer" type="AnimationPlayer" parent="." unique_id=2089541345]
+root_node = NodePath("../4")
+libraries/ = SubResource("AnimationLibrary_27vqw")
+autoplay = &"moving_plat_horz"
+
+[node name="4" type="AnimatableBody2D" parent="." unique_id=1156273248 node_paths=PackedStringArray("box", "collision_2d")]
+position = Vector2(1331.0426, 960)
+script = ExtResource("13_rw7sn")
+id = 4
+box = NodePath("../BoxInterface/PanelContainer/VBoxContainer/PanelContainer/InsideBox")
+collision_2d = [NodePath("Collision0")]
+
+[node name="Collision0" type="CollisionPolygon2D" parent="4" unique_id=671881215]
+polygon = PackedVector2Array(0, -96, -64, -96, -64, 64, 64, 64, 64, 0, 0, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="4" unique_id=908631191]
+material = ExtResource("15_rw7sn")
+position = Vector2(32, 31.999985)
+scale = Vector2(0.25, 0.25000012)
+texture = ExtResource("14_27vqw")
+region_enabled = true
+region_rect = Rect2(128, 128, 256, 256)
+
+[node name="Sprite2D2" type="Sprite2D" parent="4" unique_id=1542241288]
+material = ExtResource("15_rw7sn")
+position = Vector2(-32, 16.000008)
+scale = Vector2(0.25, 0.37499994)
+texture = ExtResource("14_27vqw")
+region_enabled = true
+region_rect = Rect2(128, 128, 256, 256)
+
+[node name="Sprite2D3" type="Sprite2D" parent="4" unique_id=1214391529]
+material = ExtResource("15_rw7sn")
+position = Vector2(-32, -64.000015)
+scale = Vector2(0.25, 0.25000012)
 texture = ExtResource("14_27vqw")
 region_enabled = true
 region_rect = Rect2(128, 128, 256, 256)
