@@ -29,7 +29,7 @@ var collision_shape : CollisionShape2D
 @export var CHARACTER_ANIMATED_SPRITE : AnimatedSprite2D
 
 @export_group("Particles")
-@export var DEADED_GPU_PARTICLES : GPUParticles2D
+@export var DEADED_CPU_PARTICLES : CPUParticles2D
 
 var coyot_box_pos : Vector2
 var floor_wall_censor_pos : Vector2
@@ -47,15 +47,15 @@ enum { # Available states for the Player for readability. Index used by the poss
 }
 
 func _ready() -> void:
-	DEADED_GPU_PARTICLES.emitting = true
+	DEADED_CPU_PARTICLES.emitting = true
 	set_physics_process(false)
 	
 	setup_states()
 	coyot_box_pos = COYOTE_BOX.position
 	floor_wall_censor_pos = FLOOR_WALL_CENSOR.position
 	
-	await DEADED_GPU_PARTICLES.finished
-	DEADED_GPU_PARTICLES.emitting = false
+	await DEADED_CPU_PARTICLES.finished
+	DEADED_CPU_PARTICLES.emitting = false
 	set_physics_process(true)
 	
 	level = load(get_tree().current_scene.scene_file_path)
@@ -167,7 +167,7 @@ func _match_states() -> void:
 			velocity = Vector2(0,0)
 			CHARACTER_ANIMATED_SPRITE.stop()
 			CHARACTER_ANIMATED_SPRITE.visible = false
-			DEADED_GPU_PARTICLES.emitting = true
+			DEADED_CPU_PARTICLES.emitting = true
 
 func _check_jumping() -> void:
 	jumping = properties.JUMPING_FRAMES

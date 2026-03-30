@@ -25,6 +25,7 @@
 [ext_resource type="Texture2D" uid="uid://xvijdhlhsu43" path="res://Assets/Sprites/Player/WalkFrames/Frame0005.png" id="22_opqna"]
 [ext_resource type="Texture2D" uid="uid://rc114cxa8r2k" path="res://Assets/Sprites/Player/WalkFrames/Frame0006.png" id="23_00okb"]
 [ext_resource type="Texture2D" uid="uid://bi6jrdqxrvq0p" path="res://Assets/Sprites/Player/WalkFrames/Frame0007.png" id="24_6hr71"]
+[ext_resource type="Shader" uid="uid://bhnhnqa8eyg4n" path="res://Scripts/Shaders/deaeded.gdshader" id="24_avx33"]
 [ext_resource type="Texture2D" uid="uid://bxhom6aytxunj" path="res://Assets/Sprites/Player/WalkFrames/Frame0008.png" id="25_y6y60"]
 [ext_resource type="Texture2D" uid="uid://cnk1le3oqyomo" path="res://Assets/Sprites/Player/WalkFrames/Frame0009.png" id="26_vmcrb"]
 [ext_resource type="Texture2D" uid="uid://bbkj3focfnbmw" path="res://Assets/Sprites/Player/WalkFrames/Frame0010.png" id="27_teras"]
@@ -144,8 +145,8 @@ size = Vector2(32, 56)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_lyrkg"]
 size = Vector2(32, 72)
 
-[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_lyrkg"]
-light_mode = 1
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_rxg2u"]
+shader = ExtResource("24_avx33")
 
 [sub_resource type="Gradient" id="Gradient_c43xd"]
 offsets = PackedFloat32Array(0.7, 1)
@@ -156,7 +157,7 @@ metadata/_snap_enabled = true
 gradient = SubResource("Gradient_c43xd")
 fill = 1
 fill_from = Vector2(0.5, 0.5)
-fill_to = Vector2(0.5, 0.2)
+fill_to = Vector2(0.5, 0.1)
 metadata/_snap_enabled = true
 
 [sub_resource type="Gradient" id="Gradient_avx33"]
@@ -164,20 +165,7 @@ offsets = PackedFloat32Array(0, 0.4)
 colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
 metadata/_snap_enabled = true
 
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_rxg2u"]
-gradient = SubResource("Gradient_avx33")
-
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_lyrkg"]
-lifetime_randomness = 1.0
-particle_flag_disable_z = true
-direction = Vector3(0, 0, 0)
-spread = 180.0
-initial_velocity_min = 1000.0
-initial_velocity_max = 3000.0
-gravity = Vector3(0, 0, 0)
-color_ramp = SubResource("GradientTexture1D_rxg2u")
-
-[node name="Player" type="CharacterBody2D" unique_id=404843843 node_paths=PackedStringArray("BUFFER_JUMP_TIMER", "SMALL_PHYSICS_BOX", "COYOTE_BOX", "GAP_BOX", "GAP_CENSOR", "FLOOR_WALL_CENSOR", "CLIP_LEFT", "CLIP_RIGHT", "CEILING_SENSOR", "HITBOX", "CHARACTER_ANIMATED_SPRITE", "DEADED_GPU_PARTICLES", "state_machine")]
+[node name="Player" type="CharacterBody2D" unique_id=404843843 node_paths=PackedStringArray("BUFFER_JUMP_TIMER", "SMALL_PHYSICS_BOX", "COYOTE_BOX", "GAP_BOX", "GAP_CENSOR", "FLOOR_WALL_CENSOR", "CLIP_LEFT", "CLIP_RIGHT", "CEILING_SENSOR", "HITBOX", "CHARACTER_ANIMATED_SPRITE", "DEADED_CPU_PARTICLES", "state_machine")]
 z_index = 100
 collision_layer = 2
 script = ExtResource("1_v0iea")
@@ -194,7 +182,7 @@ CLIP_RIGHT = NodePath("ClipCeilingSensors/ClipRight")
 CEILING_SENSOR = NodePath("ClipCeilingSensors/CeilingSensor")
 HITBOX = NodePath("Hitbox")
 CHARACTER_ANIMATED_SPRITE = NodePath("AnimatedSprite2D")
-DEADED_GPU_PARTICLES = NodePath("DeadedParticles")
+DEADED_CPU_PARTICLES = NodePath("DeadedParticles")
 properties = SubResource("Resource_hixwb")
 state_machine = NodePath("StateMachine")
 metadata/_edit_lock_ = true
@@ -214,9 +202,6 @@ scale = Vector2(3, 3)
 color = Color(0.74509805, 0.99607843, 0.9137255, 1)
 energy = 1.5
 blend_mode = 2
-shadow_enabled = true
-shadow_color = Color(0, 0, 0, 1)
-shadow_filter = 1
 texture = SubResource("GradientTexture2D_lyrkg")
 metadata/_edit_lock_ = true
 
@@ -302,14 +287,21 @@ position = Vector2(0, -4)
 shape = SubResource("RectangleShape2D_lyrkg")
 metadata/_edit_lock_ = true
 
-[node name="DeadedParticles" type="GPUParticles2D" parent="." unique_id=1604977452]
-material = SubResource("CanvasItemMaterial_lyrkg")
+[node name="DeadedParticles" type="CPUParticles2D" parent="." unique_id=633450944]
+material = SubResource("ShaderMaterial_rxg2u")
 emitting = false
 amount = 128
 texture = SubResource("GradientTexture2D_avx33")
 one_shot = true
 explosiveness = 1.0
-process_material = SubResource("ParticleProcessMaterial_lyrkg")
+lifetime_randomness = 1.0
+fixed_fps = 30
+direction = Vector2(0, 0)
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 1000.0
+initial_velocity_max = 3000.0
+color_ramp = SubResource("Gradient_avx33")
 metadata/_edit_lock_ = true
 
 [node name="StateMachine" type="Node" parent="." unique_id=1805402115 node_paths=PackedStringArray("parent")]

@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://b38x0l1gd3w7w" path="res://Scenes/Player.tscn" id="4_vrotf"]
 [ext_resource type="PackedScene" uid="uid://dhyync7cvqavl" path="res://Scenes/goal.tscn" id="6_5l77v"]
 [ext_resource type="PackedScene" uid="uid://d2hp865b8yt3u" path="res://Scenes/death_box.tscn" id="7_6y1v7"]
+[ext_resource type="PackedScene" uid="uid://cnmcdvslnh6cn" path="res://Scenes/Levels/level_7.tscn" id="7_b574l"]
 [ext_resource type="PackedScene" uid="uid://coefif7s7p7tm" path="res://Scenes/box_interface.tscn" id="8_cjb10"]
 [ext_resource type="PackedScene" uid="uid://bx7japdg7ed76" path="res://Scenes/item.tscn" id="9_6y1v7"]
 [ext_resource type="Material" uid="uid://bkj7mm6lfu5ys" path="res://Resources/ObjectColors/dark_teal.tres" id="10_bt86y"]
@@ -257,6 +258,7 @@ limit_top = -100
 
 [node name="Goal" parent="." unique_id=412398523 instance=ExtResource("6_5l77v")]
 position = Vector2(608, 256)
+level = ExtResource("7_b574l")
 
 [node name="DeathBox" parent="." unique_id=1943901647 instance=ExtResource("7_6y1v7")]
 
